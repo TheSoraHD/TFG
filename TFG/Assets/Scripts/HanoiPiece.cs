@@ -11,6 +11,9 @@ public class HanoiPiece : MonoBehaviour
     // plane which piece is attached to 
     public int planeAttached;
 
+    public int above;
+    public int below;
+
     public float speed;
 
     // position of the piece when its attached to a plane
@@ -28,54 +31,62 @@ public class HanoiPiece : MonoBehaviour
     {
         if (canBeMoved())
         {
-            Debug.Log("BITCH");
+            //Debug.Log("BITCH");
         }
     }
 
     // Manage cases when two hanoi pieces collide 
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "HanoiPlane")
+        if (collision.gameObject.tag == "HanoiPiece")
         {
-            Debug.Log(gameObject.name);
-            // it will always perform the collision from the piece below if it is not in movement
-            if (collision.transform.position.y > gameObject.transform.position.y && numselected < numPlayers)
+            HanoiPiece hp = collision.gameObject.GetComponent<HanoiPiece>();
+
+            // this will always be performed from the smallest piece of the collision
+            if (numPlayers < hp.numPlayers)
             {
                 Debug.Log(gameObject.name);
 
-                HanoiPiece hp = collision.gameObject.GetComponent<HanoiPiece>();
-
-                // if the piece above is bigger, then this piece will return to its original platform
-                if (hp.numPlayers > numPlayers)
+                // if the piece is below, then the biggest piece will return to its last platform
+                if (gameObject.transform.position.y < collision.transform.position.y) hp.Reset();
+                // update if the biggest piece is fixed to the platform and no other piece is above
+                else if (hp.numselected < hp.numPlayers)
                 {
-                    hp.numselected = 0;
-                    collision.transform.position = hp.last_position;
-                }
-                else
-                {
-                    collision.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + 1.0f, gameObject.transform.position.z);
 
-                    // update hanoi piece status
-                    hp.planeAttached = planeAttached;
-                    hp.last_position = collision.transform.position;
-                    hp.numselected = 0;
+                    if (hp.above == -1)
+                    {
+                        gameObject.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y + 1.0f, collision.transform.position.z);
+
+                        // update biggest piece status
+                        hp.above = numPlayers;
+
+                        // update smallest piece status
+                        planeAttached = hp.planeAttached;
+                        last_position = gameObject.transform.position;
+                        above = -1;
+                        below = hp.numPlayers;
+                        numselected = 0;
+                    }
+                    else Reset();
                 }
             }
-
         }
+        // in case the piece is collisioning with the floor, just return to its last platform
+        else if (collision.gameObject.tag == "Floor") Reset();
     }
 
-    void OnCollisionStay(Collision collision)
+    void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "HanoiPlane")
+        // update status
+        if (collision.gameObject.tag == "HanoiPiece")
         {
-
+            above = -1;
         }
     }
 
     bool canBeMoved()
     {
-        return numselected == numPlayers;
+        return numselected == numPlayers && above == -1;
     }
 
     void Select()
@@ -83,4 +94,10 @@ public class HanoiPiece : MonoBehaviour
 
     }
 
+    // returns the piece to the last position and disables its movement until it is picked up again
+    void Reset()
+    {
+        numselected = 0;
+        gameObject.transform.position = last_position;
+    }
 }

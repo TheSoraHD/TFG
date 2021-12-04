@@ -7,13 +7,13 @@ public class HanoiPlaneCollider : MonoBehaviour
 
     // number of hanoi pieces colliding at the same time with the plane
     // it always should be 0 or 1
-    public int num_pieces;
+    public bool num_pieces;
     public int planeID;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        if (planeID == 1) num_pieces = true;
     }
 
     // Update is called once per frame
@@ -29,7 +29,7 @@ public class HanoiPlaneCollider : MonoBehaviour
         {
             HanoiPiece hp = collision.gameObject.GetComponent<HanoiPiece>();
             // if there is already a piece touching the plane
-            if (num_pieces == 1)
+            if (num_pieces)
             {
                 hp.numselected = 0;
                 collision.transform.position = hp.last_position;
@@ -43,8 +43,12 @@ public class HanoiPlaneCollider : MonoBehaviour
                 // update hanoi piece status
                 hp.planeAttached = planeID;
                 hp.last_position = collision.transform.position;
+                hp.above = -1;
+                hp.below = -1;
                 hp.numselected = 0;
-                ++num_pieces;
+
+
+                num_pieces = true;
             }
             //Debug.Log(gameObject.name + " " + collision.gameObject.name);
         }
@@ -64,7 +68,7 @@ public class HanoiPlaneCollider : MonoBehaviour
     {
         if (collision.gameObject.tag == "HanoiPiece")
         {
-            --num_pieces;
+            num_pieces = false;
             //Debug.Log(gameObject.name + " " + collision.gameObject.name);
         }
     }

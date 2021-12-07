@@ -6,15 +6,12 @@ public class CastlePart : MonoBehaviour
 {
 
     public Vector3 platform_position;
-    public GameObject requirement = null;
-
-    public bool attached;
-
+    public GameObject[] requirements;
 
     // Start is called before the first frame update
     void Start()
     {
-        attached = false;
+
     }
 
     // Update is called once per frame

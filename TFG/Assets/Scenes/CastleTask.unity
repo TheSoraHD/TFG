@@ -558,9 +558,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c29a1ebccf2f547a472a09de193096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform_position: {x: -12.61175, y: 3.545, z: 0.1977456}
+  platform_object: {fileID: 1584941879}
   requirements:
-  - {fileID: 455234266}
+  - {fileID: 1590042882}
+  state: 0
 --- !u!4 &243818984
 Transform:
   m_ObjectHideFlags: 0
@@ -625,12 +626,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   autoPopulateObjectReferences: 1
-  actualBoundaries: {fileID: 1258672406}
-  actualHeadset: {fileID: 194834309}
-  actualLeftController: {fileID: 529243655}
-  actualRightController: {fileID: 2100264102}
-  modelAliasLeftController: {fileID: 1320170462}
-  modelAliasRightController: {fileID: 1403928328}
+  actualBoundaries: {fileID: 0}
+  actualHeadset: {fileID: 0}
+  actualLeftController: {fileID: 0}
+  actualRightController: {fileID: 0}
+  modelAliasLeftController: {fileID: 0}
+  modelAliasRightController: {fileID: 0}
   cachedSystemSDKInfo:
     baseTypeName: VRTK.SDK_BaseSystem
     fallbackTypeName: VRTK.SDK_FallbackSystem
@@ -2411,10 +2412,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c29a1ebccf2f547a472a09de193096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform_position: {x: -11.5, y: 1.8, z: 2.3}
+  platform_object: {fileID: 863706311}
   requirements:
-  - {fileID: 455234266}
-  - {fileID: 893524942}
+  - {fileID: 1590042882}
+  - {fileID: 7216329142827200911}
+  state: 0
 --- !u!64 &979700482
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2577,9 +2579,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c29a1ebccf2f547a472a09de193096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform_position: {x: -12, y: 5.5, z: 3}
+  platform_object: {fileID: 1235508160}
   requirements:
-  - {fileID: 2090150954}
+  - {fileID: 1843981283}
+  state: 0
 --- !u!4 &1158787738
 Transform:
   m_ObjectHideFlags: 0
@@ -3718,9 +3721,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c29a1ebccf2f547a472a09de193096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform_position: {x: -12, y: 3.5, z: 0}
+  platform_object: {fileID: 846780899}
   requirements:
-  - {fileID: 455234266}
+  - {fileID: 1590042882}
+  state: 0
 --- !u!65 &1411528004
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4278,8 +4282,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c29a1ebccf2f547a472a09de193096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform_position: {x: -12, y: 1.75, z: 0}
+  platform_object: {fileID: 455234266}
   requirements: []
+  state: 0
 --- !u!54 &1590042888
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4861,8 +4866,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c29a1ebccf2f547a472a09de193096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform_position: {x: -12, y: 2.75, z: 3}
+  platform_object: {fileID: 2090150954}
   requirements: []
+  state: 0
 --- !u!54 &1843981286
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5191,10 +5197,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c29a1ebccf2f547a472a09de193096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform_position: {x: -11.5, y: 1.8, z: 2.3}
+  platform_object: {fileID: 1645837625}
   requirements:
-  - {fileID: 455234266}
-  - {fileID: 2090150954}
+  - {fileID: 1590042882}
+  - {fileID: 1843981283}
+  state: 0
 --- !u!64 &2025302669
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5506,9 +5513,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c29a1ebccf2f547a472a09de193096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform_position: {x: -10.49, y: 0.75, z: -1}
+  platform_object: {fileID: 774664015}
   requirements:
-  - {fileID: 455234266}
+  - {fileID: 1590042882}
+  state: 0
 --- !u!64 &738692612961414046
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -5622,9 +5630,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c29a1ebccf2f547a472a09de193096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform_position: {x: -12, y: 5, z: 0}
+  platform_object: {fileID: 876963662}
   requirements:
-  - {fileID: 846780899}
+  - {fileID: 1411528002}
+  state: 0
 --- !u!54 &1716956306467060440
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5827,9 +5836,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c29a1ebccf2f547a472a09de193096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform_position: {x: -12, y: 5.5, z: -3}
+  platform_object: {fileID: 843219766}
   requirements:
-  - {fileID: 893524942}
+  - {fileID: 7216329142827200911}
+  state: 0
 --- !u!54 &5097759303362646577
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5946,8 +5956,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8c29a1ebccf2f547a472a09de193096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platform_position: {x: -12, y: 2.75, z: -3}
+  platform_object: {fileID: 893524942}
   requirements: []
+  state: 0
 --- !u!54 &7216329142827200913
 Rigidbody:
   m_ObjectHideFlags: 0

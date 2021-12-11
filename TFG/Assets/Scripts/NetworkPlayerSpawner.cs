@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using VRTK;
 
 public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 {
@@ -11,7 +12,8 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-        spawnedPlayerPrefab = PhotonNetwork.Instantiate("Player", transform.position, transform.rotation);
+        spawnedPlayerPrefab = PhotonNetwork.Instantiate("VRPlayer", transform.position, transform.rotation);
+        spawnedPlayerPrefab.transform.GetChild(0).GetComponent<SDK_InputSimulator>().enabled = true;
     }
 
     public override void OnLeftRoom()

@@ -3,18 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
 using Photon.Pun;
-using VRTK;
 
 public class NetworkPlayer : MonoBehaviour
 {
-    public Transform VRTK_model;
+    public Transform model;
     private PhotonView photonView;
 
     // Start is called before the first frame update
     void Start()
     {
-        VRTK_model = GameObject.Find("/VRTK_SDKSetup/[VRSimulator_CameraRig]/Player").transform;
-        VRTK_model.parent.GetComponent<SDK_InputSimulator>().enabled = true;
+        model = GameObject.Find("PlayerAvatar").transform;
         photonView = GetComponent<PhotonView>();
     }
 
@@ -25,8 +23,6 @@ public class NetworkPlayer : MonoBehaviour
         {
             gameObject.SetActive(false);
             //MapPosition(model);
-            transform.position = VRTK_model.position;
-            transform.rotation = VRTK_model.rotation;
         }
     }
 

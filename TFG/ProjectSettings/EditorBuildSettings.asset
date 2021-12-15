@@ -6,6 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/IntroRoom.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
     path: Assets/Scenes/SpaceshipTask.unity
     guid: 58a2a70c77351d8469b86d3733f4686c
+  - enabled: 1
+    path: Assets/Scenes/HanoiTowersTask.unity
+    guid: e6bdaeaa213522c4084739679bb92149
+  - enabled: 1
+    path: Assets/Scenes/CastleTask.unity
+    guid: 4a1d07f0b970731418595856366fd99e
   m_configObjects: {}

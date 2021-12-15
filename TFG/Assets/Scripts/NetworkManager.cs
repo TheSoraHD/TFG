@@ -60,4 +60,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         
     }
+
+    public void LoadLevel(int level)
+    {
+        PhotonNetwork.LoadLevel(level);
+    }
 }

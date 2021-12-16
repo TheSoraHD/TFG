@@ -11,7 +11,7 @@ public class NetworkPlayer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        model = GameObject.Find("PlayerAvatar").transform;
+        //model = GameObject.Find("PlayerAvatar").transform;
         photonView = GetComponent<PhotonView>();
     }
 
@@ -20,7 +20,7 @@ public class NetworkPlayer : MonoBehaviour
     {
         if (photonView.IsMine)
         {
-            gameObject.SetActive(false);
+            //gameObject.SetActive(false);
             //MapPosition(model);
         }
     }

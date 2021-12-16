@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class LoadLevel : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class LoadLevel : MonoBehaviour
     public int nextLevel;
     public bool passLevel;
     public NetworkManager networkManager;
+
+    public int players = 0;
 
     private Vector3 minBoundingBox;
     private Vector3 maxBoundingBox;
@@ -19,6 +22,7 @@ public class LoadLevel : MonoBehaviour
         passLevel = false;
         minBoundingBox = gameObject.GetComponent<Collider>().bounds.min;
         maxBoundingBox = gameObject.GetComponent<Collider>().bounds.max;
+        gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -30,22 +34,24 @@ public class LoadLevel : MonoBehaviour
 
     public void CheckPlayersPosition()
     {
-        PhotonView[] photonViews = Object.FindObjectsOfType<PhotonView>();
+        var photonViews = Object.FindObjectsOfType<PhotonView>();
+
         bool playersReady = true;
 
-        if (photonViews.length == 3)
+        foreach (var view in photonViews)
         {
-            for (int i = 0; i < photonViews.length; ++i)
+            if (view.Owner != null)
             {
-                if (photonViews[i].owner != null)
-                {
-                    Vector3 position = photonViews[i].gameObject.transform.position;
-                    if (position.x < minBoundingBox.x || maxBoundingBox.x < position.x || position.z < minBoundingBox.z || maxBoundingBox.z < position.z) playersReady = false;
-                }
+                Vector3 position = view.gameObject.transform.position;
+
+                // check player position inside passLevel platform
+                bool insideBox = false;
+                if (minBoundingBox.x < position.x && position.x < maxBoundingBox.x && minBoundingBox.z < position.z && position.z < maxBoundingBox.z) insideBox = true;
+
+                playersReady &= insideBox;
             }
-
-            if (playersReady) passLevel = true;
         }
-    }
 
+        passLevel = playersReady && photonViews.Length == 1;
+    }
 }

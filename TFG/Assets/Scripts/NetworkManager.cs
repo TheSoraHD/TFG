@@ -66,4 +66,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.LoadLevel(level);
     }
+
+    public bool IsMasterClient()
+    {
+        return PhotonNetwork.IsMasterClient;
+    }
 }

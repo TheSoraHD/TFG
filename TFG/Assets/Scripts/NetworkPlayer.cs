@@ -13,6 +13,7 @@ public class NetworkPlayer : MonoBehaviour
     {
         //model = GameObject.Find("PlayerAvatar").transform;
         photonView = GetComponent<PhotonView>();
+        DontDestroyOnLoad(gameObject);
     }
 
     // Update is called once per frame

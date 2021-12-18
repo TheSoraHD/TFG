@@ -228,6 +228,7 @@ namespace HTC.UnityPlugin.StereoRendering
             // get main camera and registor to StereoRenderManager
             StereoRenderManager.Instance.AddToManager(this);
 
+#if UNITY_EDITOR
             // check "ignore layer" existence and set camera mask
             LayerInjection(ignoreLayerName);
             ignoreLayerNumber = LayerMask.NameToLayer(ignoreLayerName);
@@ -240,6 +241,7 @@ namespace HTC.UnityPlugin.StereoRendering
             {
                 stereoCameraEye.cullingMask &= ~(1 << ignoreLayerNumber | 1 << ignoreLayerNumber2);
             }
+#endif
         }
 
 #if UNITY_EDITOR
@@ -360,12 +362,12 @@ namespace HTC.UnityPlugin.StereoRendering
                 anchorRot = canvasOriginRot;
             }
             
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             if(IsEditing() && LayerMask.NameToLayer(ignoreLayerName) == -1)
             {
                 LayerInjection(ignoreLayerName);
             }
-            #endif
+#endif
         }
 
         /////////////////////////////////////////////////////////////////////////////////

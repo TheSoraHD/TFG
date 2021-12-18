@@ -416,4 +416,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be53d0ee076a2c4ea2ded5cae84dff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  VRTK_model: {fileID: 0}
+  model: {fileID: 0}

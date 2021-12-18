@@ -11,15 +11,16 @@ public class LoadLevel : MonoBehaviour
     public bool passLevel;
     public NetworkManager networkManager;
 
-    public int players = 0;
-
     private Vector3 minBoundingBox;
     private Vector3 maxBoundingBox;
+
+    private bool level_loaded;
 
     // Start is called before the first frame update
     void Start()
     {
         passLevel = false;
+        level_loaded = false;
         minBoundingBox = gameObject.GetComponent<Collider>().bounds.min;
         maxBoundingBox = gameObject.GetComponent<Collider>().bounds.max;
         gameObject.SetActive(false);
@@ -28,7 +29,11 @@ public class LoadLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (passLevel) networkManager.LoadLevel(nextLevel);
+        if (passLevel && networkManager.IsMasterClient() && !level_loaded)
+        {
+            networkManager.LoadLevel(nextLevel);
+            level_loaded = true;
+        }
         else CheckPlayersPosition();
     }
 

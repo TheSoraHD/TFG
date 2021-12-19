@@ -45,9 +45,9 @@ public class LoadLevel : MonoBehaviour
 
         foreach (var view in photonViews)
         {
-            if (view.Owner != null)
+            if (view.Owner != null && view.gameObject.tag == "Player")
             {
-                Vector3 position = view.gameObject.transform.position;
+                Vector3 position = view.gameObject.transform.GetChild(0).position;
 
                 // check player position inside passLevel platform
                 bool insideBox = false;
@@ -57,6 +57,6 @@ public class LoadLevel : MonoBehaviour
             }
         }
 
-        passLevel = playersReady && photonViews.Length == 1;
+        passLevel = playersReady && photonViews.Length == 2;
     }
 }

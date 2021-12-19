@@ -894,6 +894,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d261fcb68e4d1f74b97b04a946a4e33b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Spawnpoints:
+  - {x: 13, y: 2, z: 10}
+  - {x: 13, y: 2, z: -10}
+  - {x: -13, y: 2, z: 10}
 --- !u!1001 &712520137
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1399,6 +1403,11 @@ PrefabInstance:
       propertyPath: networkManager
       value: 
       objectReference: {fileID: 704289274}
+    - target: {fileID: 6744198292075428500, guid: ac4abb3e385629e47a2a9debc7ad3618,
+        type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7808144776372325202, guid: ac4abb3e385629e47a2a9debc7ad3618,
         type: 3}
       propertyPath: m_RootOrder

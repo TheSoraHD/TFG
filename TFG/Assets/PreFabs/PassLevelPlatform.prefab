@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 7808144776372325204}
   - component: {fileID: 7808144776372325205}
   - component: {fileID: 5328897647995808920}
+  - component: {fileID: 6744198292075428500}
+  - component: {fileID: 65882792709129254}
   m_Layer: 0
   m_Name: PassLevelPlatform
   m_TagString: Untagged
@@ -106,3 +108,45 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c5bbabafe46c324681c53ea84cdb1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextLevel: 0
+  passLevel: 0
+  networkManager: {fileID: 0}
+--- !u!114 &6744198292075428500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7808144776372325206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 65882792709129254}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &65882792709129254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7808144776372325206}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1

@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 723034062829773594}
+  levelLoader: {fileID: 0}
 --- !u!114 &5621119751977380212
 MonoBehaviour:
   m_ObjectHideFlags: 0

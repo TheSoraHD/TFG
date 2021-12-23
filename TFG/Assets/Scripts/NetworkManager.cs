@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     // instance
     public static NetworkManager instance;
+
+    // Custom properties
+    public const string MAP_PROP_KEY = "map";
 
     void Awake ()
     {
@@ -40,6 +44,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         roomOptions.MaxPlayers = 3;
         roomOptions.IsVisible = true;
         roomOptions.IsOpen = true;
+        roomOptions.CustomRoomPropertiesForLobby = new string[] { MAP_PROP_KEY };
+        roomOptions.CustomRoomProperties = new Hashtable { { MAP_PROP_KEY, 0 } };
+
 
         PhotonNetwork.JoinOrCreateRoom("Room 1", roomOptions, TypedLobby.Default);
     }

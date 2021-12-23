@@ -36,6 +36,13 @@ MonoBehaviour:
   RpcList:
   - ClickRpc
   - DestroyRpc
+  - Update
+  - LevelUpdate
+  - Disable
+  - Enable
+  - DisablePlatform
+  - EnablePlatform
+  - ChangePlatformActivity
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

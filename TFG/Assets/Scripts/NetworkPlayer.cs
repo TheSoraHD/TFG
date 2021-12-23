@@ -11,10 +11,11 @@ public class NetworkPlayer : MonoBehaviour
 
     private Transform modelPlayer;
 
+    public PhotonView levelLoader;
+
     // Start is called before the first frame update
     void Start()
     {
-        //model = GameObject.Find("PlayerAvatar").transform;
         photonView = GetComponent<PhotonView>();
         DontDestroyOnLoad(gameObject);
 
@@ -22,6 +23,8 @@ public class NetworkPlayer : MonoBehaviour
         modelPlayer = GameObject.Find("/Cube/Model").transform;
 
         player.position = transform.position;
+
+        levelLoader = GameObject.Find("_LevelLoader").GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
@@ -33,6 +36,10 @@ public class NetworkPlayer : MonoBehaviour
 
             MapPosition(model, modelPlayer);
         }
+
+        levelLoader.RPC("LevelUpdate", RpcTarget.All);
+
+        if (Input.GetKeyDown(KeyCode.E)) levelLoader.RPC("ChangePlatformActivity", RpcTarget.All);
     }
 
     void MapPosition(Transform target, Transform rigTrasnform)

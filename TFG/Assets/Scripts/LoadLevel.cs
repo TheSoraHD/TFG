@@ -7,37 +7,52 @@ using Photon.Realtime;
 public class LoadLevel : MonoBehaviour
 {
 
+    // instance
+    public static LoadLevel instance;
+
     public int nextLevel;
     public bool passLevel;
     public NetworkManager networkManager;
 
+
+    public GameObject platform;
     private Vector3 minBoundingBox;
     private Vector3 maxBoundingBox;
 
     private bool level_loaded;
 
+
+    void Awake()
+    {
+        // if an instance already exissts and it's not this one - destroy us
+        if (instance != null && instance != this)
+            gameObject.SetActive(false);
+        else
+        {
+            // set the instance
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
+        nextLevel = 1;
         passLevel = false;
         level_loaded = false;
-        minBoundingBox = gameObject.GetComponent<Collider>().bounds.min;
-        maxBoundingBox = gameObject.GetComponent<Collider>().bounds.max;
-        gameObject.SetActive(false);
+
+        InitPlatform();
+        DontDestroyOnLoad(platform);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (passLevel && networkManager.IsMasterClient() && !level_loaded)
-        {
-            networkManager.LoadLevel(nextLevel);
-            level_loaded = true;
-        }
-        else CheckPlayersPosition();
+
     }
 
-    public void CheckPlayersPosition()
+    public bool CheckPlayersPosition()
     {
         var photonViews = Object.FindObjectsOfType<PhotonView>();
 
@@ -52,11 +67,51 @@ public class LoadLevel : MonoBehaviour
                 // check player position inside passLevel platform
                 bool insideBox = false;
                 if (minBoundingBox.x < position.x && position.x < maxBoundingBox.x && minBoundingBox.z < position.z && position.z < maxBoundingBox.z) insideBox = true;
-
+                
                 playersReady &= insideBox;
             }
         }
 
-        passLevel = playersReady && photonViews.Length == 2;
+        return playersReady;
+    }
+
+    void InitPlatform()
+    {
+        Collider col = platform.GetComponent<Collider>();
+        minBoundingBox = col.bounds.min;
+        maxBoundingBox = col.bounds.max;
+        level_loaded = false;
+        platform.SetActive(false);
+    }
+
+    IEnumerator InitPlatformCoroutine()
+    {
+        StartCoroutine("InitPlatform");
+        yield return new WaitForSeconds(2);
+    }
+
+    [PunRPC]
+    void LevelUpdate()
+    {
+
+        if (networkManager.IsMasterClient() && platform.activeInHierarchy)
+        {
+            passLevel = CheckPlayersPosition();
+            Debug.Log(passLevel);
+            if (passLevel && !level_loaded)
+            {
+                networkManager.LoadLevel(nextLevel);
+                nextLevel = (nextLevel + 1) % 4;
+                level_loaded = true;
+                StartCoroutine("InitPlatformCoroutine");
+            }
+        }
+    }
+
+    [PunRPC]
+    void ChangePlatformActivity()
+    {
+        if (!platform.activeInHierarchy) platform.SetActive(true);
+        else platform.SetActive(false);
     }
 }

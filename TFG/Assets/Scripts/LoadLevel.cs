@@ -93,8 +93,7 @@ public class LoadLevel : MonoBehaviour
     [PunRPC]
     void LevelUpdate()
     {
-
-        if (networkManager.IsMasterClient() && platform.activeInHierarchy)
+        if (platform.activeInHierarchy)
         {
             passLevel = CheckPlayersPosition();
             Debug.Log(passLevel);

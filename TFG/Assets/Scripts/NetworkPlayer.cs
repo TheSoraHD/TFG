@@ -37,9 +37,9 @@ public class NetworkPlayer : MonoBehaviour
             MapPosition(model, modelPlayer);
         }
 
-        levelLoader.RPC("LevelUpdate", RpcTarget.All);
+        if (photonView.Owner.IsMasterClient) levelLoader.RPC("LevelUpdate", RpcTarget.All);
 
-        if (Input.GetKeyDown(KeyCode.E)) levelLoader.RPC("ChangePlatformActivity", RpcTarget.All);
+        if (Input.GetKeyDown(KeyCode.E) && photonView.Owner.IsMasterClient) levelLoader.RPC("ChangePlatformActivity", RpcTarget.All);
     }
 
     void MapPosition(Transform target, Transform rigTrasnform)

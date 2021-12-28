@@ -13,7 +13,7 @@ public class LoadLevel : MonoBehaviour
     public int nextLevel;
     public bool passLevel;
     public NetworkManager networkManager;
-
+    public TaskController taskController;
 
     public GameObject platform;
     private Vector3 minBoundingBox;
@@ -81,6 +81,7 @@ public class LoadLevel : MonoBehaviour
         minBoundingBox = col.bounds.min;
         maxBoundingBox = col.bounds.max;
         level_loaded = false;
+        taskController.ResetFirstTime();
         platform.SetActive(false);
     }
 
@@ -96,7 +97,7 @@ public class LoadLevel : MonoBehaviour
         if (platform.activeInHierarchy)
         {
             passLevel = CheckPlayersPosition();
-            Debug.Log(passLevel);
+
             if (passLevel && !level_loaded)
             {
                 networkManager.LoadLevel(nextLevel);
@@ -112,5 +113,11 @@ public class LoadLevel : MonoBehaviour
     {
         if (!platform.activeInHierarchy) platform.SetActive(true);
         else platform.SetActive(false);
+    }
+
+    [PunRPC]
+    void ActivatePlatform()
+    {
+        platform.SetActive(true);
     }
 }

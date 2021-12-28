@@ -63,19 +63,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         base.OnPlayerEnteredRoom(newPlayer);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void LoadLevel(int level)
     {
-        PhotonNetwork.LoadLevel(level);
-    }
-
-    public bool IsMasterClient()
-    {
-        return PhotonNetwork.IsMasterClient;
+        if (PhotonNetwork.IsMasterClient) PhotonNetwork.LoadLevel(level);
     }
 }

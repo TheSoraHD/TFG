@@ -8,10 +8,12 @@ public class NetworkPlayer : MonoBehaviour
     public Transform model;
     
     private PhotonView photonView;
-
     private Transform modelPlayer;
 
+
     public PhotonView levelLoader;
+    public Material materialAssigned;
+
 
     // Start is called before the first frame update
     void Start()
@@ -37,9 +39,9 @@ public class NetworkPlayer : MonoBehaviour
             MapPosition(model, modelPlayer);
         }
 
-        if (photonView.Owner.IsMasterClient) levelLoader.RPC("LevelUpdate", RpcTarget.All);
+        levelLoader.RPC("LevelUpdate", RpcTarget.All);
+        //if (photonView.Owner.IsMasterClient) levelLoader.RPC("LevelUpdate", photonView.Owner);
 
-        if (Input.GetKeyDown(KeyCode.E) && photonView.Owner.IsMasterClient) levelLoader.RPC("ChangePlatformActivity", RpcTarget.All);
     }
 
     void MapPosition(Transform target, Transform rigTrasnform)

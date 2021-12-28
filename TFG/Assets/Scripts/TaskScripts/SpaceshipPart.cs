@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class SpaceshipPart : MonoBehaviour
 {
@@ -63,22 +64,35 @@ public class SpaceshipPart : MonoBehaviour
     void Merge(GameObject o)
     {
         // Destroying self & o rigidbodies in order to avoid bugs with multiple rigidbodies
+        Destroy(gameObject.GetComponent<PhotonRigidbodyView>());
         Destroy(gameObject.GetComponent<Rigidbody>());
+        Destroy(o.GetComponent<PhotonRigidbodyView>());
         Destroy(o.GetComponent<Rigidbody>());
 
         // creation of parent
-        GameObject spaceship = new GameObject("spaceship X", typeof(Rigidbody));
+        GameObject spaceship = new GameObject("Spaceship", typeof(Rigidbody), typeof(PhotonView), typeof(PhotonRigidbodyView));
         spaceship.tag = "SpaceshipPart";
         spaceship.transform.position = Vector3.Lerp(gameObject.transform.position, o.transform.position, (float) 0.5);
+
+        // config parent photon properties
+        PhotonView spaceship_pv = spaceship.GetComponent<PhotonView>();
+        spaceship_pv.observableSearch = PhotonView.ObservableSearch.AutoFindAll;
+        spaceship_pv.FindObservables();
+
+        PhotonRigidbodyView prv = spaceship.GetComponent<PhotonRigidbodyView>();
+        prv.m_SynchronizeAngularVelocity = true;
+        prv.m_TeleportEnabled = true;
 
         // assigning self & o to new parent
         gameObject.transform.parent = spaceship.transform;
         gameObject.transform.localPosition = relative_position;
+        Destroy(gameObject.GetComponent<PhotonView>());
         marked = false;
 
         SpaceshipPart sp = o.GetComponent<SpaceshipPart>();
         o.transform.parent = spaceship.transform;
         o.transform.localPosition = sp.relative_position;
+        Destroy(o.GetComponent<PhotonView>());
         sp.marked = false;
 
         // enable parent's rigidbody
@@ -91,6 +105,7 @@ public class SpaceshipPart : MonoBehaviour
     void JoinToSpaceship(GameObject spaceship)
     {
         // Destroying self rigidbody in order to avoid bugs with multiple rigidbodies
+        Destroy(gameObject.GetComponent<PhotonRigidbodyView>());
         Destroy(gameObject.GetComponent<Rigidbody>());
 
         // updating spaceship position to the point of collision
@@ -99,6 +114,7 @@ public class SpaceshipPart : MonoBehaviour
         // assigning self to spaceship
         gameObject.transform.parent = spaceship.transform;
         gameObject.transform.localPosition = relative_position;
+        Destroy(gameObject.GetComponent<PhotonView>());
         marked = false;
 
         // unmarking body's spaceship

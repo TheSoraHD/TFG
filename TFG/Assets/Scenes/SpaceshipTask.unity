@@ -174,6 +174,7 @@ MonoBehaviour:
   marked: 0
   relative_position: {x: 0, y: 0, z: 1}
   material_state: 0
+  materialAssigned: {fileID: 2100000, guid: 8f436943097cbaf4fb9eff137827f33a, type: 2}
 --- !u!1 &45135200
 GameObject:
   m_ObjectHideFlags: 0
@@ -208,7 +209,7 @@ Transform:
   - {fileID: 14229750}
   - {fileID: 1311703773}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
 --- !u!1 &170076733
 GameObject:
@@ -300,7 +301,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &184034170
 GameObject:
@@ -603,6 +604,7 @@ MonoBehaviour:
   marked: 0
   relative_position: {x: 0.7, y: -0.5, z: 0}
   material_state: 0
+  materialAssigned: {fileID: 2100000, guid: 8f436943097cbaf4fb9eff137827f33a, type: 2}
 --- !u!4 &599487200 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b2fa1575a17e0cb4ea3c2a9d6d885d8c,
@@ -731,6 +733,7 @@ MonoBehaviour:
   marked: 0
   relative_position: {x: 0, y: 2, z: 0}
   material_state: 0
+  materialAssigned: {fileID: 2100000, guid: 088aa236a4d1de242865d07df82311ff, type: 2}
 --- !u!1 &685609369
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,7 +825,7 @@ Transform:
   m_LocalScale: {x: 40, y: 0.5, z: 30}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &712520137
 PrefabInstance:
@@ -1100,7 +1103,7 @@ Transform:
   m_LocalScale: {x: 11.046855, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1048882540
 PrefabInstance:
@@ -1223,7 +1226,7 @@ Transform:
   - {fileID: 184034171}
   - {fileID: 1895892437}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &1191114267
 MeshCollider:
@@ -1312,6 +1315,7 @@ MonoBehaviour:
   marked: 0
   relative_position: {x: 0, y: 0, z: -1}
   material_state: 0
+  materialAssigned: {fileID: 2100000, guid: 8f436943097cbaf4fb9eff137827f33a, type: 2}
 --- !u!1001 &1641407984
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1419,6 +1423,7 @@ MonoBehaviour:
   marked: 0
   relative_position: {x: 0, y: -1.4, z: 0}
   material_state: 0
+  materialAssigned: {fileID: 2100000, guid: 088aa236a4d1de242865d07df82311ff, type: 2}
 --- !u!1 &1695164571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1733,7 +1738,7 @@ Transform:
   - {fileID: 353053865}
   - {fileID: 1904496109}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 90}
 --- !u!1001 &1808255162
 PrefabInstance:
@@ -1858,6 +1863,7 @@ MonoBehaviour:
   marked: 0
   relative_position: {x: 0, y: 0, z: 0}
   material_state: 0
+  materialAssigned: {fileID: 2100000, guid: efb1b796d10d0214b855172bac169966, type: 2}
 --- !u!64 &1875224227
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -2060,49 +2066,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1904496108}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1969504775
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1969504777}
-  - component: {fileID: 1969504776}
-  m_Layer: 0
-  m_Name: _TaskController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1969504776
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1969504775}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 389ced26590872f40a21fee6cab01075, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &1969504777
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1969504775}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.135985, y: 4.779516, z: -0.78555584}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2069538063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2294,7 +2257,7 @@ Transform:
   m_Children:
   - {fileID: 1151388028042865488}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &543450652333578292
 Transform:
@@ -2309,7 +2272,7 @@ Transform:
   m_Children:
   - {fileID: 1151388027801643372}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!4 &543450652542315549
 Transform:
@@ -2324,7 +2287,7 @@ Transform:
   m_Children:
   - {fileID: 1151388027590810949}
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!4 &543450652782392581
 Transform:
@@ -2339,7 +2302,7 @@ Transform:
   m_Children:
   - {fileID: 1151388029458400349}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &543450653061576446
 Transform:
@@ -2354,7 +2317,7 @@ Transform:
   m_Children:
   - {fileID: 1151388029185509286}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &543450653714553258
 Transform:
@@ -2369,7 +2332,7 @@ Transform:
   m_Children:
   - {fileID: 1151388028561860850}
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 180}
 --- !u!1 &919132147579388082
 GameObject:
@@ -2423,7 +2386,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 919132147579388083}
@@ -2482,7 +2445,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 919132148064941736}
@@ -2541,7 +2504,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 919132148416135823}
@@ -2600,7 +2563,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 919132148584164421}
@@ -2659,7 +2622,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 919132148864921536}
@@ -2718,7 +2681,7 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 919132149174256401}
@@ -2807,7 +2770,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1151388029458400349
 Transform:
@@ -3203,7 +3166,7 @@ Transform:
   m_LocalScale: {x: 0.18198206, y: 0.31912342, z: 0.081007764}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6383953079388980834
 GameObject:
@@ -3307,11 +3270,11 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6383953079388980838}
-  sceneViewId: 2
+  sceneViewId: 10
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!33 &7240751057930982269
@@ -3424,11 +3387,11 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 8164078558333408964}
-  sceneViewId: 3
+  sceneViewId: 11
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &8164078558459680614

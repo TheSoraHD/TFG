@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class HanoiPiece : MonoBehaviour
 {
@@ -45,7 +46,7 @@ public class HanoiPiece : MonoBehaviour
             // this will always be performed from the smallest piece of the collision
             if (numPlayers < hp.numPlayers)
             {
-                Debug.Log(gameObject.name);
+                //Debug.Log(gameObject.name);
 
                 // if the piece is below, then the biggest piece will return to its last platform
                 if (gameObject.transform.position.y < collision.transform.position.y) hp.Reset();
@@ -94,8 +95,15 @@ public class HanoiPiece : MonoBehaviour
 
     }
 
+    [PunRPC]
+    void DeactivateMovement()
+    {
+        Destroy(gameObject.GetComponent<PhotonRigidbodyView>());
+        Destroy(gameObject.GetComponent<Rigidbody>());
+    }
+
     // returns the piece to the last position and disables its movement until it is picked up again
-    void Reset()
+    public void Reset()
     {
         numselected = 0;
         gameObject.transform.position = last_position;

@@ -11,6 +11,7 @@ public class SpaceshipPart : MonoBehaviour
     public Vector3 relative_position;
 
     public int material_state;
+    public Material materialAssigned;
 
 
     // Start is called before the first frame update
@@ -28,15 +29,14 @@ public class SpaceshipPart : MonoBehaviour
             // if the spaceship part is the parent and the merge is possible, this gameObject joins to the parent
             if (IsParent(collision.gameObject))
             {
-                if (MergeIsPossible(collision.gameObject, true)) JoinToSpaceship(collision.gameObject);
+                if (MergeIsPossible(collision.gameObject, true))
+                    gameObject.GetComponent<PhotonView>().RPC("JoinToSpaceship", RpcTarget.All, collision.gameObject.name);
             }
             // if the spaceship part is not the parent and the merge is possible, then both objects merge into a spaceship parent object
             // it also assures the merge only is activated from the lowest partID
-            else if (MergeIsPossible(collision.gameObject, false) && partID < collision.gameObject.GetComponent<SpaceshipPart>().partID) Merge(collision.gameObject);
-            else
-            {
-                marked = false;
-            }
+            else if (MergeIsPossible(collision.gameObject, false) && partID < collision.gameObject.GetComponent<SpaceshipPart>().partID)
+                gameObject.GetComponent<PhotonView>().RPC("Merge", RpcTarget.All, collision.gameObject.name);
+            else marked = false;
         }
     }
 
@@ -59,10 +59,12 @@ public class SpaceshipPart : MonoBehaviour
         return marked && sp.marked && isBody != sp.isBody;
     }
 
-
+    [PunRPC]
     // merge function merges self with the gameobject passed by parameter into a new gameobject
-    void Merge(GameObject o)
+    void Merge(string name)
     {
+        GameObject o = GameObject.Find(name);
+
         // Destroying self & o rigidbodies in order to avoid bugs with multiple rigidbodies
         Destroy(gameObject.GetComponent<PhotonRigidbodyView>());
         Destroy(gameObject.GetComponent<Rigidbody>());
@@ -75,13 +77,7 @@ public class SpaceshipPart : MonoBehaviour
         spaceship.transform.position = Vector3.Lerp(gameObject.transform.position, o.transform.position, (float) 0.5);
 
         // config parent photon properties
-        PhotonView spaceship_pv = spaceship.GetComponent<PhotonView>();
-        spaceship_pv.observableSearch = PhotonView.ObservableSearch.AutoFindAll;
-        spaceship_pv.FindObservables();
-
-        PhotonRigidbodyView prv = spaceship.GetComponent<PhotonRigidbodyView>();
-        prv.m_SynchronizeAngularVelocity = true;
-        prv.m_TeleportEnabled = true;
+        ConfigPhotonView(spaceship);
 
         // assigning self & o to new parent
         gameObject.transform.parent = spaceship.transform;
@@ -99,11 +95,30 @@ public class SpaceshipPart : MonoBehaviour
         Rigidbody spaceship_rb = spaceship.GetComponent<Rigidbody>();
         spaceship_rb.freezeRotation = true;
         spaceship_rb.isKinematic = false;
+
+
     }
 
-    // joins this gameObject to the spaceship object passed by parameter
-    void JoinToSpaceship(GameObject spaceship)
+    void ConfigPhotonView(GameObject spaceship)
     {
+        PhotonView spaceship_pv = spaceship.GetComponent<PhotonView>();
+        spaceship_pv.ViewID = 20;
+        spaceship_pv.OwnershipTransfer = OwnershipOption.Takeover;
+        spaceship_pv.TransferOwnership(PhotonNetwork.MasterClient);
+        spaceship_pv.observableSearch = PhotonView.ObservableSearch.AutoFindAll;
+        spaceship_pv.FindObservables();
+
+        PhotonRigidbodyView prv = spaceship.GetComponent<PhotonRigidbodyView>();
+        prv.m_SynchronizeAngularVelocity = true;
+        prv.m_TeleportEnabled = true;
+    }
+
+    [PunRPC]
+    // joins this gameObject to the spaceship object passed by parameter
+    void JoinToSpaceship(string name)
+    {
+        GameObject spaceship = GameObject.Find(name);
+
         // Destroying self rigidbody in order to avoid bugs with multiple rigidbodies
         Destroy(gameObject.GetComponent<PhotonRigidbodyView>());
         Destroy(gameObject.GetComponent<Rigidbody>());

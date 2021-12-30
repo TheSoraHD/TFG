@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class CastlePart : MonoBehaviour
 {
-
     public GameObject platform_object;
     public GameObject[] requirements;
 
@@ -41,8 +41,7 @@ public class CastlePart : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
-                state = 2;
-                gameObject.SetActive(false);
+                gameObject.GetComponent<PhotonView>().RPC("ChangeToState2", RpcTarget.All);
             }
         }
     }
@@ -55,5 +54,12 @@ public class CastlePart : MonoBehaviour
             res = res && requirements[i].GetComponent<CastlePart>().state == 2;
         }
         return res;
+    }
+
+    [PunRPC]
+    void ChangeToState2()
+    {
+        state = 2;
+        gameObject.SetActive(false);
     }
 }

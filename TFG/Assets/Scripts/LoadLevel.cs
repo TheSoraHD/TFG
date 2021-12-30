@@ -16,9 +16,11 @@ public class LoadLevel : MonoBehaviour
     public TaskController taskController;
 
     public GameObject platform;
+    public bool platformActive;
     private Vector3 minBoundingBox;
     private Vector3 maxBoundingBox;
-
+    
+    [SerializeField]
     private bool level_loaded;
 
 
@@ -40,16 +42,10 @@ public class LoadLevel : MonoBehaviour
     {
         nextLevel = 1;
         passLevel = false;
-        level_loaded = false;
 
+        GetPlatformMaxMinCoord();
         InitPlatform();
         DontDestroyOnLoad(platform);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public bool CheckPlayersPosition()
@@ -75,14 +71,19 @@ public class LoadLevel : MonoBehaviour
         return playersReady;
     }
 
-    void InitPlatform()
+    void GetPlatformMaxMinCoord()
     {
         Collider col = platform.GetComponent<Collider>();
         minBoundingBox = col.bounds.min;
         maxBoundingBox = col.bounds.max;
+    }
+
+    void InitPlatform()
+    {
+        platform.SetActive(false);
+        platformActive = false;
         level_loaded = false;
         taskController.ResetFirstTime();
-        platform.SetActive(false);
     }
 
     IEnumerator InitPlatformCoroutine()
@@ -91,8 +92,7 @@ public class LoadLevel : MonoBehaviour
         yield return new WaitForSeconds(2);
     }
 
-    [PunRPC]
-    void LevelUpdate()
+    public void LevelUpdate()
     {
         if (platform.activeInHierarchy)
         {
@@ -100,24 +100,24 @@ public class LoadLevel : MonoBehaviour
 
             if (passLevel && !level_loaded)
             {
-                networkManager.LoadLevel(nextLevel);
-                nextLevel = (nextLevel + 1) % 4;
                 level_loaded = true;
+                networkManager.LoadLevel(nextLevel);
+                taskController.IncrementLevel();
                 StartCoroutine("InitPlatformCoroutine");
             }
         }
     }
 
-    [PunRPC]
-    void ChangePlatformActivity()
+    public void CheckConditions()
     {
-        if (!platform.activeInHierarchy) platform.SetActive(true);
-        else platform.SetActive(false);
+        taskController.CheckConditions();
     }
 
     [PunRPC]
-    void ActivatePlatform()
+    void ActivatePlatform(int nextlvl)
     {
         platform.SetActive(true);
+        platformActive = true;
+        nextLevel = nextlvl;
     }
 }

@@ -132,6 +132,8 @@ GameObject:
   - component: {fileID: 113589634}
   - component: {fileID: 113589633}
   - component: {fileID: 113589635}
+  - component: {fileID: 113589637}
+  - component: {fileID: 113589636}
   m_Layer: 0
   m_Name: medium_circle
   m_TagString: HanoiPiece
@@ -189,6 +191,45 @@ MonoBehaviour:
   below: 3
   speed: 0
   last_position: {x: 0, y: 0, z: 0}
+--- !u!114 &113589636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113589632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &113589637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113589632}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 113589636}
+  sceneViewId: 11
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &123041964
 GameObject:
   m_ObjectHideFlags: 0
@@ -200,6 +241,8 @@ GameObject:
   - component: {fileID: 123041966}
   - component: {fileID: 123041965}
   - component: {fileID: 123041967}
+  - component: {fileID: 123041969}
+  - component: {fileID: 123041968}
   m_Layer: 0
   m_Name: small_circle
   m_TagString: HanoiPiece
@@ -257,6 +300,45 @@ MonoBehaviour:
   below: 2
   speed: 0
   last_position: {x: 0, y: 0, z: 0}
+--- !u!114 &123041968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123041964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &123041969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 123041964}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 123041968}
+  sceneViewId: 12
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &381188853
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,7 +666,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a6fee3028439741b247659bc295f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  num_pieces: 0
+  piece: 0
   planeID: 3
 --- !u!1 &712688050
 GameObject:
@@ -1158,7 +1240,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a6fee3028439741b247659bc295f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  num_pieces: 0
+  piece: 0
   planeID: 2
 --- !u!1 &1769740138
 GameObject:
@@ -1361,7 +1443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a6fee3028439741b247659bc295f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  num_pieces: 1
+  piece: 0
   planeID: 1
 --- !u!1 &494515593811481264
 GameObject:
@@ -1483,6 +1565,8 @@ GameObject:
   - component: {fileID: 8077984509709349075}
   - component: {fileID: 8885906287148477034}
   - component: {fileID: 8885906287148477035}
+  - component: {fileID: 8885906287148477037}
+  - component: {fileID: 8885906287148477036}
   m_Layer: 0
   m_Name: big_circle
   m_TagString: HanoiPiece
@@ -1525,3 +1609,42 @@ MonoBehaviour:
   below: -1
   speed: 0
   last_position: {x: 0, y: 0, z: 0}
+--- !u!114 &8885906287148477036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8885906287148477033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &8885906287148477037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8885906287148477033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 8885906287148477036}
+  sceneViewId: 10
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

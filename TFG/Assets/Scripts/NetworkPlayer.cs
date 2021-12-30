@@ -10,8 +10,8 @@ public class NetworkPlayer : MonoBehaviour
     private PhotonView photonView;
     private Transform modelPlayer;
 
+    public LoadLevel levelLoader;
 
-    public PhotonView levelLoader;
     public Material materialAssigned;
 
 
@@ -26,7 +26,7 @@ public class NetworkPlayer : MonoBehaviour
 
         player.position = transform.position;
 
-        levelLoader = GameObject.Find("_LevelLoader").GetComponent<PhotonView>();
+        levelLoader = GameObject.Find("_LevelLoader").GetComponent<LoadLevel>();
     }
 
     // Update is called once per frame
@@ -39,7 +39,12 @@ public class NetworkPlayer : MonoBehaviour
             MapPosition(model, modelPlayer);
         }
 
-        levelLoader.RPC("LevelUpdate", RpcTarget.All);
+        if (photonView.Owner.IsMasterClient)
+        {
+            if (!levelLoader.platformActive) levelLoader.CheckConditions();
+            else levelLoader.LevelUpdate();
+        }
+
         //if (photonView.Owner.IsMasterClient) levelLoader.RPC("LevelUpdate", photonView.Owner);
 
     }

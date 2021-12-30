@@ -17,4 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CastleTask.unity
     guid: 4a1d07f0b970731418595856366fd99e
+  - enabled: 1
+    path: Assets/Scenes/EndRoom.unity
+    guid: 79f23bc129378d34d997839c8c3c59f6
   m_configObjects: {}

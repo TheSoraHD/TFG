@@ -11,6 +11,9 @@ public class SpaceshipPart : MonoBehaviour
     public Vector3 relative_position;
 
     public int material_state;
+
+    [SerializeField]
+    private Material[] materials = new Material[4];
     public Material materialAssigned;
 
 
@@ -19,6 +22,7 @@ public class SpaceshipPart : MonoBehaviour
     {
         marked = false;
         material_state = 0;
+        InitMaterials();
     }
 
     void OnCollisionEnter(Collision collision)
@@ -134,5 +138,19 @@ public class SpaceshipPart : MonoBehaviour
 
         // unmarking body's spaceship
         spaceship.transform.Find("body").GetComponent<SpaceshipPart>().marked = false;
+    }
+
+    void InitMaterials()
+    {
+        materials.SetValue(Resources.Load<Material>("Materials/default"), 0);
+        materials.SetValue(Resources.Load<Material>("Materials/Yellow"), 1);
+        materials.SetValue(Resources.Load<Material>("Materials/Red"), 2);
+        materials.SetValue(Resources.Load<Material>("Materials/Blue"), 3);
+    }
+
+    [PunRPC]
+    void ChangeColor()
+    {
+
     }
 }

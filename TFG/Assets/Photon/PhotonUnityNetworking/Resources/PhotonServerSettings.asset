@@ -49,6 +49,8 @@ MonoBehaviour:
   - ChangeToState2
   - JoinToSpaceship
   - Merge
+  - ChangeColor
+  - DestroySpaceship
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

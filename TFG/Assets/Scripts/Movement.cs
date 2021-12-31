@@ -5,9 +5,13 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
 
+    float horizontalSpeed = 2.0f;
+
     // Start is called before the first frame update
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -20,6 +24,10 @@ public class Movement : MonoBehaviour
         if (Input.GetKey(KeyCode.A)) position.x -= 0.05f;
         if (Input.GetKey(KeyCode.D)) position.x += 0.05f;
 
+        float angle = horizontalSpeed * Input.GetAxis("Mouse X");
+
         transform.position = position;
+        transform.Rotate(0, angle, 0);
+
     }
 }

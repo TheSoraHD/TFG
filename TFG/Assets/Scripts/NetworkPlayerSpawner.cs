@@ -16,7 +16,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
 
-        spawnedPlayerPrefab = PhotonNetwork.Instantiate("Cube", Spawnpoints[(int) PhotonNetwork.CurrentRoom.PlayerCount - 1], transform.rotation);
+        spawnedPlayerPrefab = PhotonNetwork.Instantiate("PreFabs/Cube", Spawnpoints[(int) PhotonNetwork.CurrentRoom.PlayerCount - 1], transform.rotation);
         spawnedPlayerPrefab.GetComponent<NetworkPlayer>().materialAssigned = materials[(int)PhotonNetwork.CurrentRoom.PlayerCount - 1];
     }
 

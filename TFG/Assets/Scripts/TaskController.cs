@@ -13,9 +13,7 @@ public class TaskController : MonoBehaviour
 
 
     public PhotonView levelLoader;
-    public NetworkManager networkManager;
-
-
+    public PhotonView photonView;
 
     void Awake()
     {
@@ -35,12 +33,6 @@ public class TaskController : MonoBehaviour
     {
         currentLevel = 0;
         firstTime = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
     }
 
     public void CheckConditions()
@@ -64,7 +56,7 @@ public class TaskController : MonoBehaviour
                 {
                     Debug.Log("Get activated.");
                     levelLoader.RPC("ActivatePlatform", RpcTarget.All, 2);
-                    Destroy(spaceship);
+                    photonView.RPC("DestroySpaceship", RpcTarget.All);
                     firstTime = false;
                 }
             }
@@ -150,5 +142,12 @@ public class TaskController : MonoBehaviour
             res &= castlePart.state == 2;
         }
         return res;
+    }
+
+    [PunRPC]
+    void DestroySpaceship(string name)
+    {
+        GameObject spaceship = GameObject.Find(name);
+        Destroy(spaceship);
     }
 }

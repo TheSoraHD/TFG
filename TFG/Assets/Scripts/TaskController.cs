@@ -56,7 +56,7 @@ public class TaskController : MonoBehaviour
                 {
                     Debug.Log("Get activated.");
                     levelLoader.RPC("ActivatePlatform", RpcTarget.All, 2);
-                    photonView.RPC("DestroySpaceship", RpcTarget.All);
+                    photonView.RPC("DestroySpaceship", RpcTarget.All, "Spaceship");
                     firstTime = false;
                 }
             }

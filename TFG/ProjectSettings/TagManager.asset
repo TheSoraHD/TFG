@@ -8,6 +8,7 @@ TagManager:
   - SpaceshipPart
   - Floor
   - CastlePart
+  - Spaceship
   layers:
   - Default
   - TransparentFX

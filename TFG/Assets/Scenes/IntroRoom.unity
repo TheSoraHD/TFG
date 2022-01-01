@@ -823,7 +823,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentLevel: 0
   levelLoader: {fileID: 1572018182}
-  networkManager: {fileID: 0}
+  photonView: {fileID: 1662824495}
 --- !u!4 &1662824494
 Transform:
   m_ObjectHideFlags: 0

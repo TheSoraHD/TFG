@@ -17,6 +17,9 @@ public class HanoiPiece : MonoBehaviour
 
     public float speed;
 
+    public AudioSource place;
+    public AudioSource fail;
+
     // position of the piece when its attached to a plane
     public Vector3 last_position;
 
@@ -24,6 +27,7 @@ public class HanoiPiece : MonoBehaviour
     void Start()
     {
         last_position = gameObject.transform.position;
+        above = -1;
         planeAttached = 1;
     }
 
@@ -49,7 +53,12 @@ public class HanoiPiece : MonoBehaviour
                 //Debug.Log(gameObject.name);
 
                 // if the piece is below, then the biggest piece will return to its last platform
-                if (gameObject.transform.position.y < collision.transform.position.y) hp.Reset();
+                if (gameObject.transform.position.y < collision.transform.position.y)
+                {
+                    Debug.Log("Piece fail 1");
+                    fail.Play();
+                    hp.Reset();
+                }
                 // update if the biggest piece is fixed to the platform and no other piece is above
                 else if (hp.numselected < hp.numPlayers)
                 {
@@ -67,13 +76,26 @@ public class HanoiPiece : MonoBehaviour
                         above = -1;
                         below = hp.numPlayers;
                         numselected = 0;
+
+                        Debug.Log("Piece placed");
+                        place.Play();
                     }
-                    else Reset();
+                    else
+                    {
+                        Debug.Log("Piece fail 2");
+                        fail.Play();
+                        Reset();
+                    }
                 }
             }
         }
         // in case the piece is collisioning with the floor, just return to its last platform
-        else if (collision.gameObject.tag == "Floor") Reset();
+        else if (collision.gameObject.tag == "Floor")
+        {
+            Debug.Log("Piece fail 3");
+            fail.Play();
+            Reset();
+        }
     }
 
     void OnCollisionExit(Collision collision)
@@ -88,11 +110,6 @@ public class HanoiPiece : MonoBehaviour
     bool canBeMoved()
     {
         return numselected == numPlayers && above == -1;
-    }
-
-    void Select()
-    {
-
     }
 
     [PunRPC]

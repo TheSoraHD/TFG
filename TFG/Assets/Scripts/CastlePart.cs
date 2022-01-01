@@ -2,11 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
 public class CastlePart : MonoBehaviour
 {
     public GameObject platform_object;
     public GameObject[] requirements;
+
+    public PhotonView photonView;
+
+    public AudioSource audio;
 
     // status of the CastlePiece
     // state = 0 --> idle
@@ -18,6 +23,8 @@ public class CastlePart : MonoBehaviour
     void Start()
     {
         state = 0;
+        //audio = GetComponent<AudioSource>();
+        //photonView.RPC("AssignPartToPlayer", RpcTarget.All);
     }
 
     // Update is called once per frame
@@ -41,7 +48,8 @@ public class CastlePart : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
-                gameObject.GetComponent<PhotonView>().RPC("ChangeToState2", RpcTarget.All);
+                audio.Play();
+                photonView.RPC("ChangeToState2", RpcTarget.All);
             }
         }
     }
@@ -61,5 +69,38 @@ public class CastlePart : MonoBehaviour
     {
         state = 2;
         gameObject.SetActive(false);
+    }
+
+    [PunRPC]
+    void AssignPartToPlayer()
+    {
+        Renderer rend;
+        if (gameObject.name == "castle_crown") rend = transform.GetChild(0).gameObject.GetComponent<Renderer>();
+        else rend = gameObject.GetComponent<Renderer>();
+
+        foreach (Player player in PhotonNetwork.PlayerList)
+        {
+
+            Material playerMat = GetMaterial((int)player.CustomProperties["Material"]);
+            Debug.Log(gameObject.name + " " + playerMat);
+            if (rend.sharedMaterial == playerMat)
+            {
+                Debug.Log(gameObject.name + " " + player.UserId);
+                photonView.TransferOwnership(player);
+            }
+            break;
+        }
+        
+        //GameObject playerOBJ = PhotonNetwork.LocalPlayer.TagObject as GameObject;
+        //NetworkPlayer player = playerOBJ.GetComponent<NetworkPlayer>();
+
+        //if (rend.sharedMaterial == player.materialAssigned) photonView.TransferOwnership(PhotonNetwork.LocalPlayer);
+    }
+
+    private Material GetMaterial(int index)
+    {
+        if (index == 1) return Resources.Load<Material>("Materials/Yellow");
+        else if (index == 2) return Resources.Load<Material>("Materials/Red");
+        else return Resources.Load<Material>("Materials/Blue");
     }
 }

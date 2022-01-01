@@ -5,6 +5,8 @@ using UnityEngine;
 public class GlueMechanic : MonoBehaviour
 {
 
+    public AudioSource sound;
+
     void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "SpaceshipPart") Mark(collision.gameObject, false);
@@ -18,6 +20,8 @@ public class GlueMechanic : MonoBehaviour
         if (isParent) sp = o.transform.Find("body").GetComponent<SpaceshipPart>();
         else sp = o.GetComponent<SpaceshipPart>();
         sp.marked = true;
+
+        sound.Play();
     }
 
 }

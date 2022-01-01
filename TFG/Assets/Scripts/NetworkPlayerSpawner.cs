@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
 {
@@ -16,8 +17,12 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     {
         base.OnJoinedRoom();
 
+        Hashtable hash = new Hashtable();
+        hash.Add("Material", (int)PhotonNetwork.CurrentRoom.PlayerCount);
+        PhotonNetwork.LocalPlayer.SetCustomProperties(hash);
+
         spawnedPlayerPrefab = PhotonNetwork.Instantiate("PreFabs/Cube", Spawnpoints[(int) PhotonNetwork.CurrentRoom.PlayerCount - 1], transform.rotation);
-        spawnedPlayerPrefab.GetComponent<NetworkPlayer>().materialAssigned = materials[(int)PhotonNetwork.CurrentRoom.PlayerCount - 1];
+        //spawnedPlayerPrefab.GetComponent<NetworkPlayer>().materialAssigned = materials[(int)PhotonNetwork.CurrentRoom.PlayerCount - 1];
     }
 
     public override void OnLeftRoom()

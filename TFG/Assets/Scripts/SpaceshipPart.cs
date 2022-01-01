@@ -11,6 +11,9 @@ public class SpaceshipPart : MonoBehaviour
     public bool marked;
     public Vector3 relative_position;
 
+    public AudioSource hit;
+    public AudioSource fail;
+
     // color attributes
     [SerializeField]
     public int material_state;
@@ -41,6 +44,7 @@ public class SpaceshipPart : MonoBehaviour
                     gameObject.GetComponent<PhotonView>().RPC("Merge", RpcTarget.All, collision.gameObject.name);
                 else
                 {
+                    fail.Play();
                     marked = false;
                     col_sp.marked = false;
                 }
@@ -53,6 +57,7 @@ public class SpaceshipPart : MonoBehaviour
                 gameObject.GetComponent<PhotonView>().RPC("JoinToSpaceship", RpcTarget.All, collision.gameObject.name);
             else
             {
+                fail.Play();
                 marked = false;
                 collision.transform.Find("body").GetComponent<SpaceshipPart>().marked = false;
             }
@@ -105,7 +110,7 @@ public class SpaceshipPart : MonoBehaviour
         spaceship_rb.freezeRotation = true;
         spaceship_rb.isKinematic = false;
 
-
+        hit.Play();
     }
 
     void ConfigPhotonView(GameObject spaceship)
@@ -143,6 +148,8 @@ public class SpaceshipPart : MonoBehaviour
 
         // unmarking body's spaceship
         spaceship.transform.Find("body").GetComponent<SpaceshipPart>().marked = false;
+
+        hit.Play();
     }
 
     void InitMaterials()
@@ -159,9 +166,6 @@ public class SpaceshipPart : MonoBehaviour
         Renderer rend = gameObject.GetComponent<Renderer>();
 
         material_state = (material_state + 1) % 4;
-        //++material_state;
-        //if (material_state == materials.Length) material_state = 0;
-
         rend.sharedMaterial = materials[material_state];
     }
 }

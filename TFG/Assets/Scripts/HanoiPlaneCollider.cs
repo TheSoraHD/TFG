@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class HanoiPlaneCollider : MonoBehaviour
 {
+    
+    public int planeID;
 
     // number of hanoi pieces colliding at the same time with the plane
     // it always should be 0 or 1
     public bool piece;
-    public int planeID;
+
+    public AudioSource place;
+    public AudioSource fail;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        if (planeID == 1) piece = true;
+        //if (planeID == 1) piece = true;
     }
 
     // Update is called once per frame
@@ -29,10 +34,15 @@ public class HanoiPlaneCollider : MonoBehaviour
         {
             HanoiPiece hp = collision.gameObject.GetComponent<HanoiPiece>();
             // if there is already a piece touching the plane
-            if (piece) hp.Reset();
+            if (piece)
+            {
+                Debug.Log("Plane fail");
+                fail.Play();
+                hp.Reset();
+            }
             else
             {
-                collision.transform.position = new Vector3(gameObject.transform.position.x, (float)0.76, gameObject.transform.position.z);
+                collision.transform.position = new Vector3(gameObject.transform.position.x, 1.25f, gameObject.transform.position.z);
 
                 // update hanoi piece status
                 hp.planeAttached = planeID;
@@ -42,6 +52,9 @@ public class HanoiPlaneCollider : MonoBehaviour
                 hp.numselected = 0;
 
                 piece = true;
+
+                Debug.Log("Plane exit");
+                place.Play();
             }
         }
     }

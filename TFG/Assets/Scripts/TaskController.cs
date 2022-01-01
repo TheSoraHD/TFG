@@ -11,9 +11,10 @@ public class TaskController : MonoBehaviour
     public int currentLevel;
     private bool firstTime;
 
-
     public PhotonView levelLoader;
     public PhotonView photonView;
+
+    public AudioSource audio;
 
     void Awake()
     {
@@ -42,40 +43,37 @@ public class TaskController : MonoBehaviour
             IntroButton button = GameObject.Find("Button").GetComponent<IntroButton>();
             if (button.pushed && firstTime)
             {
-                Debug.Log("Get activated.");
                 levelLoader.RPC("ActivatePlatform", RpcTarget.All, 1);
+                photonView.RPC("PlayLevelClear", RpcTarget.All);
                 firstTime = false;
             }
         }
         else if (currentLevel == 1)
         {
             GameObject spaceship = GameObject.Find("Spaceship");
-            if (spaceship != null && spaceship.transform.childCount == 3)
+            if (spaceship != null && spaceship.transform.childCount == 2)
             {
                 if (CheckSpaceshipColor(spaceship) && firstTime)
                 {
-                    Debug.Log("Get activated.");
                     levelLoader.RPC("ActivatePlatform", RpcTarget.All, 2);
                     photonView.RPC("DestroySpaceship", RpcTarget.All, "Spaceship");
+                    photonView.RPC("PlayLevelClear", RpcTarget.All);
                     firstTime = false;
                 }
             }
         }
         else if (currentLevel == 2)
         {
-            GameObject plane = GameObject.Find("Plane3");
+            GameObject plane = GameObject.Find("Platform3");
             GameObject[] HanoiPieces = GameObject.FindGameObjectsWithTag("HanoiPiece");
 
             if (plane != null && HanoiPieces.Length > 0)
             {
                 if (CheckHanoiPieces(plane, HanoiPieces) && firstTime)
                 {
-                    Debug.Log("Get activated.");
                     levelLoader.RPC("ActivatePlatform", RpcTarget.All, 3);
+                    photonView.RPC("PlayLevelClear", RpcTarget.All);
                     firstTime = false;
-                    //bigHP.gameObject.GetComponent<PhotonView>().RPC("DeactivateMovement", RpcTarget.All);
-                    //mediumHP.gameObject.GetComponent<PhotonView>().RPC("DeactivateMovement", RpcTarget.All);
-                    //smallHP.gameObject.GetComponent<PhotonView>().RPC("DeactivateMovement", RpcTarget.All);
                 }
             }
         }
@@ -87,8 +85,8 @@ public class TaskController : MonoBehaviour
             {
                 if (CheckCastleParts(castleParts) && firstTime)
                 {
-                    Debug.Log("Get activated.");
                     levelLoader.RPC("ActivatePlatform", RpcTarget.All, 4);
+                    photonView.RPC("PlayLevelClear", RpcTarget.All);
                     firstTime = false;
                 }
             }
@@ -149,5 +147,11 @@ public class TaskController : MonoBehaviour
     {
         GameObject spaceship = GameObject.Find(name);
         Destroy(spaceship);
+    }
+
+    [PunRPC]
+    void PlayLevelClear()
+    {
+        audio.Play();
     }
 }

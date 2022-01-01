@@ -19,6 +19,7 @@ public class NetworkPlayer : MonoBehaviour
     void Start()
     {
         photonView = GetComponent<PhotonView>();
+        photonView.Owner.TagObject = gameObject;
         DontDestroyOnLoad(gameObject);
 
         Transform player = GameObject.Find("/Cube").transform;
@@ -44,8 +45,6 @@ public class NetworkPlayer : MonoBehaviour
             if (!levelLoader.platformActive) levelLoader.CheckConditions();
             else levelLoader.LevelUpdate();
         }
-
-        //if (photonView.Owner.IsMasterClient) levelLoader.RPC("LevelUpdate", photonView.Owner);
 
     }
 

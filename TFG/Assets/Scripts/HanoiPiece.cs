@@ -15,7 +15,8 @@ public class HanoiPiece : MonoBehaviour
     public int above;
     public int below;
 
-    public float speed;
+    public bool start;
+    public bool reset;
 
     public AudioSource place;
     public AudioSource fail;
@@ -26,6 +27,8 @@ public class HanoiPiece : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        start = true;
+        reset = false;
         last_position = gameObject.transform.position;
         above = -1;
         planeAttached = 1;
@@ -55,8 +58,7 @@ public class HanoiPiece : MonoBehaviour
                 // if the piece is below, then the biggest piece will return to its last platform
                 if (gameObject.transform.position.y < collision.transform.position.y)
                 {
-                    Debug.Log("Piece fail 1");
-                    fail.Play();
+
                     hp.Reset();
                 }
                 // update if the biggest piece is fixed to the platform and no other piece is above
@@ -77,13 +79,13 @@ public class HanoiPiece : MonoBehaviour
                         below = hp.numPlayers;
                         numselected = 0;
 
-                        Debug.Log("Piece placed");
-                        place.Play();
+                        // sounds management
+                        if (!start && !reset) place.Play();
+                        if (start) start = false;
+                        if (reset) reset = false;
                     }
                     else
                     {
-                        Debug.Log("Piece fail 2");
-                        fail.Play();
                         Reset();
                     }
                 }
@@ -92,8 +94,6 @@ public class HanoiPiece : MonoBehaviour
         // in case the piece is collisioning with the floor, just return to its last platform
         else if (collision.gameObject.tag == "Floor")
         {
-            Debug.Log("Piece fail 3");
-            fail.Play();
             Reset();
         }
     }
@@ -122,6 +122,8 @@ public class HanoiPiece : MonoBehaviour
     // returns the piece to the last position and disables its movement until it is picked up again
     public void Reset()
     {
+        reset = true;
+        fail.Play();
         numselected = 0;
         gameObject.transform.position = last_position;
     }

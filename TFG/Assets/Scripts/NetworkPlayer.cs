@@ -44,6 +44,12 @@ public class NetworkPlayer : MonoBehaviour
         {
             if (!levelLoader.platformActive) levelLoader.CheckConditions();
             else levelLoader.LevelUpdate();
+
+            if (Input.GetKeyDown(KeyCode.Alpha0)) levelLoader.ChangeLevel(0);
+            if (Input.GetKeyDown(KeyCode.Alpha1)) levelLoader.ChangeLevel(1);
+            if (Input.GetKeyDown(KeyCode.Alpha2)) levelLoader.ChangeLevel(2);
+            if (Input.GetKeyDown(KeyCode.Alpha3)) levelLoader.ChangeLevel(3);
+            if (Input.GetKeyDown(KeyCode.Alpha4)) levelLoader.ChangeLevel(4);
         }
 
     }

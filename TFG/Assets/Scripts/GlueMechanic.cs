@@ -19,9 +19,12 @@ public class GlueMechanic : MonoBehaviour
         SpaceshipPart sp;
         if (isParent) sp = o.transform.Find("body").GetComponent<SpaceshipPart>();
         else sp = o.GetComponent<SpaceshipPart>();
-        sp.marked = true;
 
-        sound.Play();
+        if (!sp.marked)
+        {
+            sp.marked = true;
+            sound.Play();
+        }
     }
 
 }

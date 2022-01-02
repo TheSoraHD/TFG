@@ -39,7 +39,7 @@ public class CastlePart : MonoBehaviour
                 state = 1;
             }
         }
-        else
+        else if (state == 1)
         {
             if (dist >= 6.0f)
             {
@@ -48,7 +48,6 @@ public class CastlePart : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
-                audio.Play();
                 photonView.RPC("ChangeToState2", RpcTarget.All);
             }
         }
@@ -67,8 +66,15 @@ public class CastlePart : MonoBehaviour
     [PunRPC]
     void ChangeToState2()
     {
+        audio.Play();
         state = 2;
-        gameObject.SetActive(false);
+        gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        if (gameObject.name == "castle_crown") DisableCastleCrown();
+        else
+        {
+            gameObject.GetComponent<Renderer>().enabled = false;
+            gameObject.GetComponent<Collider>().enabled = false;
+        }
     }
 
     [PunRPC]
@@ -102,5 +108,14 @@ public class CastlePart : MonoBehaviour
         if (index == 1) return Resources.Load<Material>("Materials/Yellow");
         else if (index == 2) return Resources.Load<Material>("Materials/Red");
         else return Resources.Load<Material>("Materials/Blue");
+    }
+
+    void DisableCastleCrown()
+    {
+        for (int i = 0; i < transform.childCount; ++i)
+        {
+            transform.GetChild(i).GetComponent<Renderer>().enabled = false;
+            transform.GetChild(i).GetComponent<Collider>().enabled = false;
+        }
     }
 }

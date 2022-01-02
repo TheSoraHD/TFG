@@ -120,4 +120,12 @@ public class LoadLevel : MonoBehaviour
         platformActive = true;
         nextLevel = nextlvl;
     }
+
+    public void ChangeLevel(int lvl)
+    {
+        level_loaded = true;
+        networkManager.LoadLevel(lvl);
+        taskController.SetCurrentLevel(lvl);
+        StartCoroutine("InitPlatformCoroutine");
+    }
 }

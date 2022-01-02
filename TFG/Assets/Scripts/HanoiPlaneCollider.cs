@@ -12,7 +12,6 @@ public class HanoiPlaneCollider : MonoBehaviour
     public bool piece;
 
     public AudioSource place;
-    public AudioSource fail;
 
 
     // Start is called before the first frame update
@@ -36,8 +35,6 @@ public class HanoiPlaneCollider : MonoBehaviour
             // if there is already a piece touching the plane
             if (piece)
             {
-                Debug.Log("Plane fail");
-                fail.Play();
                 hp.Reset();
             }
             else
@@ -53,8 +50,9 @@ public class HanoiPlaneCollider : MonoBehaviour
 
                 piece = true;
 
-                Debug.Log("Plane exit");
-                place.Play();
+                if (!hp.start && !hp.reset) place.Play();
+                if (hp.start) hp.start = false;
+                if (hp.reset) hp.reset = false;
             }
         }
     }

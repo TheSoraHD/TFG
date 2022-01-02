@@ -8,7 +8,9 @@ public class TaskController : MonoBehaviour
     // instance
     public static TaskController instance;
 
-    public int currentLevel;
+    [SerializeField]
+    private int currentLevel;
+    [SerializeField]
     private bool firstTime;
 
     public PhotonView levelLoader;
@@ -51,7 +53,7 @@ public class TaskController : MonoBehaviour
         else if (currentLevel == 1)
         {
             GameObject spaceship = GameObject.Find("Spaceship");
-            if (spaceship != null && spaceship.transform.childCount == 2)
+            if (spaceship != null && spaceship.transform.childCount == 3)
             {
                 if (CheckSpaceshipColor(spaceship) && firstTime)
                 {
@@ -153,5 +155,10 @@ public class TaskController : MonoBehaviour
     void PlayLevelClear()
     {
         audio.Play();
+    }
+
+    public void SetCurrentLevel(int lvl)
+    {
+        currentLevel = lvl;
     }
 }

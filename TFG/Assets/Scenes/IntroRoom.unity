@@ -823,6 +823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentLevel: 0
+  firstTime: 0
   levelLoader: {fileID: 1572018182}
   photonView: {fileID: 1662824495}
   audio: {fileID: 1662824496}

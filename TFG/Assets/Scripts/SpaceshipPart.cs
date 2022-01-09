@@ -59,7 +59,7 @@ public class SpaceshipPart : MonoBehaviour
             {
                 fail.Play();
                 marked = false;
-                collision.transform.Find("body").GetComponent<SpaceshipPart>().marked = false;
+                collision.transform.Find("Body").GetComponent<SpaceshipPart>().marked = false;
             }
         }
     }
@@ -68,7 +68,7 @@ public class SpaceshipPart : MonoBehaviour
     bool MergeIsPossible(GameObject o, bool isParent)
     {
         SpaceshipPart sp;
-        if (isParent) sp = o.transform.Find("body").GetComponent<SpaceshipPart>();
+        if (isParent) sp = o.transform.Find("Body").GetComponent<SpaceshipPart>();
         else sp = o.GetComponent<SpaceshipPart>();
         return marked && sp.marked && isBody != sp.isBody;
     }
@@ -147,7 +147,7 @@ public class SpaceshipPart : MonoBehaviour
         marked = false;
 
         // unmarking body's spaceship
-        spaceship.transform.Find("body").GetComponent<SpaceshipPart>().marked = false;
+        spaceship.transform.Find("Body").GetComponent<SpaceshipPart>().marked = false;
 
         hit.Play();
     }

@@ -17,7 +17,7 @@ public class GlueMechanic : MonoBehaviour
     void Mark(GameObject o, bool isParent)
     {
         SpaceshipPart sp;
-        if (isParent) sp = o.transform.Find("body").GetComponent<SpaceshipPart>();
+        if (isParent) sp = o.transform.Find("Body").GetComponent<SpaceshipPart>();
         else sp = o.GetComponent<SpaceshipPart>();
 
         if (!sp.marked)
@@ -26,5 +26,4 @@ public class GlueMechanic : MonoBehaviour
             sound.Play();
         }
     }
-
 }

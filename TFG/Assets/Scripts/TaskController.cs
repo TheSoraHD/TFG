@@ -53,7 +53,7 @@ public class TaskController : MonoBehaviour
         else if (currentLevel == 1)
         {
             GameObject spaceship = GameObject.Find("Spaceship");
-            if (spaceship != null && spaceship.transform.childCount == 3)
+            if (spaceship != null && spaceship.transform.childCount == 6)
             {
                 if (CheckSpaceshipColor(spaceship) && firstTime)
                 {
@@ -108,13 +108,13 @@ public class TaskController : MonoBehaviour
     // checks that the spaceship parts have their proper value
     bool CheckSpaceshipColor(GameObject spaceship)
     {
-        return true;
         bool res = true;
         for (int i = 0; i < spaceship.transform.childCount; ++i)
         {
-            SpaceshipPart sp = spaceship.transform.GetChild(i).GetComponent<SpaceshipPart>();
-            Renderer rend = spaceship.transform.GetChild(i).GetChild(0).gameObject.GetComponent<Renderer>();
-            res &= sp.materialAssigned == rend.sharedMaterial;
+            GameObject piece = spaceship.transform.GetChild(i).gameObject;
+            SpaceshipPart sp = piece.GetComponent<SpaceshipPart>();
+            Renderer rend = piece.GetComponent<Renderer>();
+            res &= sp.materialAssigned.name == rend.sharedMaterial.name;
         }
         return res;
     }
@@ -122,7 +122,7 @@ public class TaskController : MonoBehaviour
     // checks that all the hanoi pieces are in the goal plane
     bool CheckHanoiPieces(GameObject plane, GameObject[] HanoiPieces)
     {
-        HanoiPlaneCollider planeColl = plane.GetComponent<HanoiPlaneCollider>();
+        HanoiPlatformCollider planeColl = plane.GetComponent<HanoiPlatformCollider>();
 
         bool res = true;
         foreach (GameObject hanoiPiece in HanoiPieces)

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HanoiPlaneCollider : MonoBehaviour
+public class HanoiPlatformCollider : MonoBehaviour
 {
     
     public int planeID;
@@ -12,20 +12,6 @@ public class HanoiPlaneCollider : MonoBehaviour
     public bool piece;
 
     public AudioSource place;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //if (planeID == 1) piece = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     
     void OnCollisionEnter(Collision collision)
     {

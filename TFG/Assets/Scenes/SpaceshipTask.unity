@@ -2538,7 +2538,7 @@ GameObject:
   - component: {fileID: 6383953079388980838}
   - component: {fileID: 6383953079388980840}
   m_Layer: 0
-  m_Name: paintbrush
+  m_Name: Paintbrush
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2749,7 +2749,7 @@ GameObject:
   - component: {fileID: 8164078558199895203}
   - component: {fileID: 8164078558199895202}
   m_Layer: 0
-  m_Name: body
+  m_Name: Body
   m_TagString: SpaceshipPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3045,7 +3045,7 @@ GameObject:
   - component: {fileID: 8164078558333408964}
   - component: {fileID: 8164078558333408966}
   m_Layer: 0
-  m_Name: glue
+  m_Name: Glue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3234,7 +3234,7 @@ GameObject:
   - component: {fileID: 8164078558459680620}
   - component: {fileID: 8164078558459680619}
   m_Layer: 0
-  m_Name: forward
+  m_Name: Forward
   m_TagString: SpaceshipPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3531,7 +3531,7 @@ GameObject:
   - component: {fileID: 8164078558752226255}
   - component: {fileID: 8164078558752226254}
   m_Layer: 0
-  m_Name: wing2
+  m_Name: Wing2
   m_TagString: SpaceshipPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3828,7 +3828,7 @@ GameObject:
   - component: {fileID: 8164078559342622833}
   - component: {fileID: 8164078559342622832}
   m_Layer: 0
-  m_Name: jet_engine
+  m_Name: Jet_Engine
   m_TagString: SpaceshipPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4125,7 +4125,7 @@ GameObject:
   - component: {fileID: 8164078559794433668}
   - component: {fileID: 8164078559794433667}
   m_Layer: 0
-  m_Name: capsule
+  m_Name: Capsule
   m_TagString: SpaceshipPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4422,7 +4422,7 @@ GameObject:
   - component: {fileID: 8164078560116423261}
   - component: {fileID: 8164078560116423260}
   m_Layer: 0
-  m_Name: wing
+  m_Name: Wing
   m_TagString: SpaceshipPart
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

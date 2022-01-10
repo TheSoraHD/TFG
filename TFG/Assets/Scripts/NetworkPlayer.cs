@@ -10,7 +10,7 @@ public class NetworkPlayer : MonoBehaviour
     private PhotonView photonView;
     private Transform modelPlayer;
 
-    public LoadLevel levelLoader;
+    public LevelLoader levelLoader;
 
     public Material materialAssigned;
 
@@ -27,7 +27,7 @@ public class NetworkPlayer : MonoBehaviour
 
         player.position = transform.position;
 
-        levelLoader = GameObject.Find("_LevelLoader").GetComponent<LoadLevel>();
+        levelLoader = GameObject.Find("_LevelLoader").GetComponent<LevelLoader>();
     }
 
     // Update is called once per frame

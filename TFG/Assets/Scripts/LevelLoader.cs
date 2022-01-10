@@ -4,11 +4,11 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class LoadLevel : MonoBehaviour
+public class LevelLoader : MonoBehaviour
 {
 
     // instance
-    public static LoadLevel instance;
+    public static LevelLoader instance;
 
     public int nextLevel;
     public bool passLevel;
@@ -76,6 +76,7 @@ public class LoadLevel : MonoBehaviour
         Collider col = platform.GetComponent<Collider>();
         minBoundingBox = col.bounds.min;
         maxBoundingBox = col.bounds.max;
+        col.enabled = false;
     }
 
     void InitPlatform()
@@ -94,17 +95,14 @@ public class LoadLevel : MonoBehaviour
 
     public void LevelUpdate()
     {
-        if (platform.activeInHierarchy)
-        {
-            passLevel = CheckPlayersPosition();
+        passLevel = CheckPlayersPosition();
 
-            if (passLevel && !level_loaded)
-            {
-                level_loaded = true;
-                networkManager.LoadLevel(nextLevel);
-                taskController.IncrementLevel();
-                StartCoroutine("InitPlatformCoroutine");
-            }
+        if (passLevel && !level_loaded)
+        {
+            level_loaded = true;
+            networkManager.LoadLevel(nextLevel);
+            taskController.IncrementLevel();
+            StartCoroutine("InitPlatformCoroutine");
         }
     }
 

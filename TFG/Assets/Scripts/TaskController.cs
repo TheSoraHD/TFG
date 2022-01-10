@@ -16,7 +16,7 @@ public class TaskController : MonoBehaviour
     public PhotonView levelLoader;
     public PhotonView photonView;
 
-    public AudioSource audio;
+    public AudioSource win;
 
     void Awake()
     {
@@ -66,12 +66,12 @@ public class TaskController : MonoBehaviour
         }
         else if (currentLevel == 2)
         {
-            GameObject plane = GameObject.Find("Platform3");
+            GameObject platform = GameObject.Find("Platform3");
             GameObject[] HanoiPieces = GameObject.FindGameObjectsWithTag("HanoiPiece");
 
-            if (plane != null && HanoiPieces.Length > 0)
+            if (platform != null && HanoiPieces.Length > 0)
             {
-                if (CheckHanoiPieces(plane, HanoiPieces) && firstTime)
+                if (CheckHanoiPieces(platform, HanoiPieces) && firstTime)
                 {
                     levelLoader.RPC("ActivatePlatform", RpcTarget.All, 3);
                     photonView.RPC("PlayLevelClear", RpcTarget.All);
@@ -120,14 +120,14 @@ public class TaskController : MonoBehaviour
     }
 
     // checks that all the hanoi pieces are in the goal plane
-    bool CheckHanoiPieces(GameObject plane, GameObject[] HanoiPieces)
+    bool CheckHanoiPieces(GameObject platform, GameObject[] HanoiPieces)
     {
-        HanoiPlatformCollider planeColl = plane.GetComponent<HanoiPlatformCollider>();
+        HanoiPlatformCollider paltformColl = platform.GetComponent<HanoiPlatformCollider>();
 
         bool res = true;
         foreach (GameObject hanoiPiece in HanoiPieces)
         {
-            res &= hanoiPiece.GetComponent<HanoiPiece>().planeAttached == planeColl.planeID;
+            res &= hanoiPiece.GetComponent<HanoiPiece>().platformAttached == paltformColl.platformID;
         }
 
         return res;
@@ -154,7 +154,7 @@ public class TaskController : MonoBehaviour
     [PunRPC]
     void PlayLevelClear()
     {
-        audio.Play();
+        win.Play();
     }
 
     public void SetCurrentLevel(int lvl)

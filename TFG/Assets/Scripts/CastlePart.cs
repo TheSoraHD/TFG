@@ -23,8 +23,7 @@ public class CastlePart : MonoBehaviour
     void Start()
     {
         state = 0;
-        //audio = GetComponent<AudioSource>();
-        //photonView.RPC("AssignPartToPlayer", RpcTarget.All);
+        photonView.RPC("AssignPartToPlayer", RpcTarget.All);
     }
 
     // Update is called once per frame
@@ -88,10 +87,10 @@ public class CastlePart : MonoBehaviour
         {
 
             Material playerMat = GetMaterial((int)player.CustomProperties["Material"]);
-            Debug.Log(gameObject.name + " " + playerMat);
-            if (rend.sharedMaterial == playerMat)
+            //Debug.Log(gameObject.name + " " + playerMat.name);
+            if (rend.sharedMaterial.name == playerMat.name)
             {
-                Debug.Log(gameObject.name + " " + player.UserId);
+                Debug.Log(gameObject.name + " " + playerMat.name);
                 photonView.TransferOwnership(player);
             }
             break;

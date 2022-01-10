@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class HanoiPlatformCollider : MonoBehaviour
 {
-    
-    public int planeID;
+    // platform identifier
+    public int platformID;
 
-    // number of hanoi pieces colliding at the same time with the plane
-    // it always should be 0 or 1
-    public bool piece;
+    // pieceID on the platform
+    // pieceAttached = -1 means there's no piece on the platform
+    public int pieceAttached = -1;
 
     public AudioSource place;
     
@@ -18,23 +18,20 @@ public class HanoiPlatformCollider : MonoBehaviour
         if (collision.gameObject.tag == "HanoiPiece")
         {
             HanoiPiece hp = collision.gameObject.GetComponent<HanoiPiece>();
-            // if there is already a piece touching the plane
-            if (piece)
-            {
-                hp.Reset();
-            }
+            // if there's already a piece on the platform
+            if (pieceAttached != -1) hp.Reset();
             else
             {
                 collision.transform.position = new Vector3(gameObject.transform.position.x, 1.25f, gameObject.transform.position.z);
 
                 // update hanoi piece status
-                hp.planeAttached = planeID;
+                hp.platformAttached = platformID;
                 hp.last_position = collision.transform.position;
                 hp.above = -1;
                 hp.below = -1;
                 hp.numselected = 0;
 
-                piece = true;
+                pieceAttached = hp.numPlayers;
 
                 if (!hp.start && !hp.reset) place.Play();
                 if (hp.start) hp.start = false;
@@ -47,7 +44,11 @@ public class HanoiPlatformCollider : MonoBehaviour
     {
         if (collision.gameObject.tag == "HanoiPiece")
         {
-            piece = false;
+            HanoiPiece hp = collision.gameObject.GetComponent<HanoiPiece>();
+            if (pieceAttached == hp.numPlayers)
+            {
+                pieceAttached = -1;
+            }
         }
     }
 }

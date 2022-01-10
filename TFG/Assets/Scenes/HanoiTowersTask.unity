@@ -931,7 +931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a6fee3028439741b247659bc295f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planeID: 1
+  platformID: 1
   piece: 0
   place: {fileID: 866850292}
 --- !u!65 &866850294
@@ -1416,7 +1416,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a6fee3028439741b247659bc295f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planeID: 2
+  platformID: 2
   piece: 0
   place: {fileID: 1743481308}
 --- !u!65 &1743481310
@@ -1991,7 +1991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a6fee3028439741b247659bc295f39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  planeID: 3
+  platformID: 3
   piece: 0
   place: {fileID: 1940416378}
 --- !u!65 &1940416380

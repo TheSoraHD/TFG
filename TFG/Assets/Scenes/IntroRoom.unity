@@ -826,7 +826,7 @@ MonoBehaviour:
   firstTime: 0
   levelLoader: {fileID: 1572018182}
   photonView: {fileID: 1662824495}
-  audio: {fileID: 1662824496}
+  win: {fileID: 1662824496}
 --- !u!4 &1662824494
 Transform:
   m_ObjectHideFlags: 0

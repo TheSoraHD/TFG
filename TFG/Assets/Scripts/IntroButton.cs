@@ -5,7 +5,6 @@ using Photon.Pun;
 
 public class IntroButton : MonoBehaviour
 {
-
     public bool pushed;
 
     // Start is called before the first frame update
@@ -14,15 +13,8 @@ public class IntroButton : MonoBehaviour
         pushed = false;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
-
     void OnCollisionEnter(Collision collision)
     {
-        //Debug.Log(collision.transform.root.name);
         if (collision.transform.root.tag == "Player") pushed = true;
     }
 }

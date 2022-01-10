@@ -9,8 +9,8 @@ public class HanoiPiece : MonoBehaviour
     public int numPlayers;
     // num current players selecting the piece
     public int numselected;
-    // plane which piece is attached to 
-    public int planeAttached;
+    // platformID the piece is attached to 
+    public int platformAttached;
 
     public int above;
     public int below;
@@ -31,16 +31,7 @@ public class HanoiPiece : MonoBehaviour
         reset = false;
         last_position = gameObject.transform.position;
         above = -1;
-        planeAttached = 1;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (canBeMoved())
-        {
-            //Debug.Log("BITCH");
-        }
+        platformAttached = 1;
     }
 
     // Manage cases when two hanoi pieces collide 
@@ -53,18 +44,11 @@ public class HanoiPiece : MonoBehaviour
             // this will always be performed from the smallest piece of the collision
             if (numPlayers < hp.numPlayers)
             {
-                //Debug.Log(gameObject.name);
-
                 // if the piece is below, then the biggest piece will return to its last platform
-                if (gameObject.transform.position.y < collision.transform.position.y)
-                {
-
-                    hp.Reset();
-                }
+                if (gameObject.transform.position.y < collision.transform.position.y) hp.Reset();
                 // update if the biggest piece is fixed to the platform and no other piece is above
                 else if (hp.numselected < hp.numPlayers)
                 {
-
                     if (hp.above == -1)
                     {
                         gameObject.transform.position = new Vector3(collision.transform.position.x, collision.transform.position.y + 1.0f, collision.transform.position.z);
@@ -73,7 +57,7 @@ public class HanoiPiece : MonoBehaviour
                         hp.above = numPlayers;
 
                         // update smallest piece status
-                        planeAttached = hp.planeAttached;
+                        platformAttached = hp.platformAttached;
                         last_position = gameObject.transform.position;
                         above = -1;
                         below = hp.numPlayers;
@@ -84,18 +68,12 @@ public class HanoiPiece : MonoBehaviour
                         if (start) start = false;
                         if (reset) reset = false;
                     }
-                    else
-                    {
-                        Reset();
-                    }
+                    else Reset();
                 }
             }
         }
         // in case the piece is collisioning with the floor, just return to its last platform
-        else if (collision.gameObject.tag == "Floor")
-        {
-            Reset();
-        }
+        else if (collision.gameObject.tag == "Floor") Reset();
     }
 
     void OnCollisionExit(Collision collision)
@@ -105,18 +83,6 @@ public class HanoiPiece : MonoBehaviour
         {
             above = -1;
         }
-    }
-
-    bool canBeMoved()
-    {
-        return numselected == numPlayers && above == -1;
-    }
-
-    [PunRPC]
-    void DeactivateMovement()
-    {
-        Destroy(gameObject.GetComponent<PhotonRigidbodyView>());
-        Destroy(gameObject.GetComponent<Rigidbody>());
     }
 
     // returns the piece to the last position and disables its movement until it is picked up again

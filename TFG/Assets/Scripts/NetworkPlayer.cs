@@ -8,11 +8,9 @@ public class NetworkPlayer : MonoBehaviour
     public Transform model;
     
     private PhotonView photonView;
-    private Transform modelPlayer;
+    public Transform modelPlayer;
 
     public LevelLoader levelLoader;
-
-    public Material materialAssigned;
 
 
     // Start is called before the first frame update
@@ -22,8 +20,8 @@ public class NetworkPlayer : MonoBehaviour
         photonView.Owner.TagObject = gameObject;
         DontDestroyOnLoad(gameObject);
 
-        Transform player = GameObject.Find("/Cube").transform;
-        modelPlayer = GameObject.Find("/Cube/Model").transform;
+        Transform player = GameObject.Find("/NetworkPlayer").transform;
+        modelPlayer = GameObject.Find("/NetworkPlayer/Model").transform;
 
         player.position = transform.position;
 
@@ -54,9 +52,13 @@ public class NetworkPlayer : MonoBehaviour
 
     }
 
-    void MapPosition(Transform target, Transform rigTrasnform)
+    void MapPosition(Transform target, Transform rigTransform)
     {
-        //transform.position = rigTrasnform.position;
-        target.position = rigTrasnform.position;
+        //transform.position = rigTransform.position;
+        target.position = rigTransform.position;
+        target.parent.position = target.position - target.localPosition;
+
+        target.rotation = rigTransform.rotation;
+
     }
 }

@@ -156,6 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model: {fileID: 723034062829773594}
+  modelPlayer: {fileID: 0}
   levelLoader: {fileID: 0}
   materialAssigned: {fileID: 0}
 --- !u!114 &5621119751977380212

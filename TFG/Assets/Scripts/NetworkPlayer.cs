@@ -54,10 +54,7 @@ public class NetworkPlayer : MonoBehaviour
 
     void MapPosition(Transform target, Transform rigTransform)
     {
-        //transform.position = rigTransform.position;
         target.position = rigTransform.position;
-        target.parent.position = target.position - target.localPosition;
-
         target.rotation = rigTransform.rotation;
 
     }

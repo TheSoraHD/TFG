@@ -48,7 +48,6 @@ MonoBehaviour:
   model: {fileID: 6682447340702563650}
   modelPlayer: {fileID: 0}
   levelLoader: {fileID: 0}
-  materialAssigned: {fileID: 0}
 --- !u!114 &5976181914580006059
 MonoBehaviour:
   m_ObjectHideFlags: 0

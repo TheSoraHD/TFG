@@ -12,7 +12,6 @@ public class NetworkPlayer : MonoBehaviour
 
     public LevelLoader levelLoader;
 
-
     // Start is called before the first frame update
     void Start()
     {
@@ -58,4 +57,12 @@ public class NetworkPlayer : MonoBehaviour
         target.rotation = rigTransform.rotation;
 
     }
+
+    private Material GetMaterial(int index)
+    {
+        if (index == 1) return Resources.Load<Material>("Materials/Yellow");
+        else if (index == 2) return Resources.Load<Material>("Materials/Red");
+        else return Resources.Load<Material>("Materials/Blue");
+    }
+
 }

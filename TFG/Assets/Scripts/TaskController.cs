@@ -66,7 +66,7 @@ public class TaskController : MonoBehaviour
         }
         else if (currentLevel == 2)
         {
-            GameObject platform = GameObject.Find("Platform3");
+            GameObject platform = GameObject.Find("/Platform3");
             GameObject[] HanoiPieces = GameObject.FindGameObjectsWithTag("HanoiPiece");
 
             if (platform != null && HanoiPieces.Length > 0)
@@ -122,12 +122,11 @@ public class TaskController : MonoBehaviour
     // checks that all the hanoi pieces are in the goal plane
     bool CheckHanoiPieces(GameObject platform, GameObject[] HanoiPieces)
     {
-        HanoiPlatformCollider paltformColl = platform.GetComponent<HanoiPlatformCollider>();
-
+        HanoiPlatformCollider platformColl = platform.GetComponent<HanoiPlatformCollider>();
         bool res = true;
         foreach (GameObject hanoiPiece in HanoiPieces)
         {
-            res &= hanoiPiece.GetComponent<HanoiPiece>().platformAttached == paltformColl.platformID;
+            res &= hanoiPiece.GetComponent<HanoiPiece>().platformAttached == platformColl.platformID;
         }
 
         return res;

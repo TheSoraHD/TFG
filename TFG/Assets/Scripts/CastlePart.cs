@@ -11,7 +11,7 @@ public class CastlePart : MonoBehaviour
 
     public PhotonView photonView;
 
-    public AudioSource audio;
+    public AudioSource sound;
 
     // status of the CastlePiece
     // state = 0 --> not displayed on platform
@@ -64,7 +64,7 @@ public class CastlePart : MonoBehaviour
     [PunRPC]
     void ChangeToState2()
     {
-        audio.Play();
+        sound.Play();
         state = 2;
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
         if (gameObject.name == "castle_crown") DisableCastleCrown();

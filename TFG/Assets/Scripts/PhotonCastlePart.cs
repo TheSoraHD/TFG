@@ -1,8 +1,10 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class CastlePart : MonoBehaviour
+public class PhotonCastlePart : MonoBehaviour
 {
     public GameObject platform_object;
     public GameObject[] requirements;

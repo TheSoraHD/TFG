@@ -4,7 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
+public class PhotonNetworkPlayerSpawner : MonoBehaviourPunCallbacks
 {
     private GameObject spawnedPlayerPrefab;
 

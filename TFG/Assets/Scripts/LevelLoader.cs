@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
-using Photon.Realtime;
 
 public class LevelLoader : MonoBehaviour
 {
@@ -12,8 +10,9 @@ public class LevelLoader : MonoBehaviour
 
     public int nextLevel;
     public bool passLevel;
-    public NetworkManager networkManager;
-    public TaskController taskController;
+    //public NGONetworkManager networkManager;
+    //TO-DO: NGOTaskController
+    public PhotonTaskController taskController;
 
     public GameObject platform;
     public bool platformActive;
@@ -50,6 +49,7 @@ public class LevelLoader : MonoBehaviour
 
     public bool CheckPlayersPosition()
     {
+        /*
         var photonViews = Object.FindObjectsOfType<PhotonView>();
 
         bool playersReady = true;
@@ -69,6 +69,8 @@ public class LevelLoader : MonoBehaviour
         }
 
         return playersReady;
+        */
+        return true; //SHET
     }
 
     void GetPlatformMaxMinCoord()
@@ -100,7 +102,7 @@ public class LevelLoader : MonoBehaviour
         if (passLevel && !level_loaded)
         {
             level_loaded = true;
-            networkManager.LoadLevel(nextLevel);
+            //networkManager.LoadLevel(nextLevel);
             taskController.IncrementLevel();
             StartCoroutine("InitPlatformCoroutine");
         }
@@ -111,7 +113,8 @@ public class LevelLoader : MonoBehaviour
         taskController.CheckConditions();
     }
 
-    [PunRPC]
+    //TO-DO!!!
+    //[PunRPC]
     void ActivatePlatform(int nextlvl)
     {
         platform.SetActive(true);
@@ -122,7 +125,7 @@ public class LevelLoader : MonoBehaviour
     public void ChangeLevel(int lvl)
     {
         level_loaded = true;
-        networkManager.LoadLevel(lvl);
+        //networkManager.LoadLevel(lvl);
         taskController.SetCurrentLevel(lvl);
         StartCoroutine("InitPlatformCoroutine");
     }

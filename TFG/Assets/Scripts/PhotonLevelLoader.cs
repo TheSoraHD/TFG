@@ -12,8 +12,8 @@ public class PhotonLevelLoader : MonoBehaviour
 
     public int nextLevel;
     public bool passLevel;
-    public NetworkManager networkManager;
-    public TaskController taskController;
+    public PhotonNetworkManager networkManager;
+    public PhotonTaskController taskController;
 
     public GameObject platform;
     public bool platformActive;

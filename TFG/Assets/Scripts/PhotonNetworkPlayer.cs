@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class NetworkPlayer : MonoBehaviour
+public class PhotonNetworkPlayer : MonoBehaviour
 {
     public Transform model;
     

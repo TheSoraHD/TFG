@@ -7,7 +7,8 @@ public class CastlePart : MonoBehaviour
     public GameObject platform_object;
     public GameObject[] requirements;
 
-    public PhotonView photonView;
+    //TO-DO: NGO ALTERNATIVE
+    //public PhotonView photonView;
 
     public AudioSource sound;
 
@@ -44,7 +45,8 @@ public class CastlePart : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
-                photonView.RPC("ChangeToState2", RpcTarget.All);
+                //TO-DO: NGO ALTERNATIVE
+                //photonView.RPC("ChangeToState2", RpcTarget.All);
             }
         }
     }
@@ -59,7 +61,8 @@ public class CastlePart : MonoBehaviour
         return res;
     }
 
-    [PunRPC]
+    //TO-DO: NGO ALTERNATIVE
+    //[PunRPC]
     void ChangeToState2()
     {
         sound.Play();

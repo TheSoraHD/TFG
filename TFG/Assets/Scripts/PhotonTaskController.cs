@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class TaskController : MonoBehaviour
+public class PhotonTaskController : MonoBehaviour
 {
     // instance
-    public static TaskController instance;
+    public static PhotonTaskController instance;
 
     [SerializeField]
     private int currentLevel;

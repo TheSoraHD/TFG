@@ -5,10 +5,10 @@ using Photon.Pun;
 using Photon.Realtime;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
-public class NetworkManager : MonoBehaviourPunCallbacks
+public class PhotonNetworkManager : MonoBehaviourPunCallbacks
 {
     // instance
-    public static NetworkManager instance;
+    public static PhotonNetworkManager instance;
 
     // Custom properties
     public const string MAP_PROP_KEY = "map";

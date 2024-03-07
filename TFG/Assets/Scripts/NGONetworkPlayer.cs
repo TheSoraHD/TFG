@@ -11,12 +11,25 @@ public class NGONetworkPlayer : NetworkBehaviour
     public Transform playerLeftHand;
     public Transform playerRightHand;
 
+    public Renderer[] meshToDisable;
+
 
     public Transform model;
     public Transform modelPlayer;
     public LevelLoader levelLoader;
     //private PhotonView photonView;
 
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        if (IsOwner)
+        {
+            foreach (var item in meshToDisable)
+            {
+                item.enabled = false;
+            }
+        }
+    }
 
     // Start is called before the first frame update
     void Start()

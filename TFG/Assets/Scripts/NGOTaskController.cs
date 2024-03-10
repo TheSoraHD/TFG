@@ -142,14 +142,14 @@ public class NGOTaskController : NetworkBehaviour
     }
 
     [Rpc(SendTo.Everyone)]
-    void DestroySpaceship(string name)
+    void DestroySpaceshipRpc(string name)
     {
         GameObject spaceship = GameObject.Find(name);
         Destroy(spaceship);
     }
 
     [Rpc(SendTo.Everyone)]
-    void PlayLevelClear()
+    void PlayLevelClearRpc()
     {
         win.Play();
     }

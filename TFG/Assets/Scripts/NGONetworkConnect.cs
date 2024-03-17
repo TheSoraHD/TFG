@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-public class NGONetworkConnect : NetworkBehaviour
+public class NGONetworkConnect : NetworkManager
 {
     public void Create()
     {

@@ -6,24 +6,29 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/TEST.unity
+    guid: 51fb9fb2fe747c54aa0dddd9532b79c6
+  - enabled: 0
     path: Assets/Scenes/IntroRoom.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SpaceshipTask.unity
     guid: 58a2a70c77351d8469b86d3733f4686c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/HanoiTowersTask.unity
     guid: e6bdaeaa213522c4084739679bb92149
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CastleTask.unity
     guid: 4a1d07f0b970731418595856366fd99e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/EndRoom.unity
     guid: 79f23bc129378d34d997839c8c3c59f6
   m_configObjects:
     Unity.XR.OpenVR.Settings: {fileID: 11400000, guid: 03f218595b67b3948bc4f6437d377baf,
       type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: b1360fb28f389984bb871a03148a9c55,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 99abaee743451bd409608334ac4a2dc3,
       type: 2}
     xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: da53e83b5776dcd46a2c95c0f77def3c,
       type: 2}

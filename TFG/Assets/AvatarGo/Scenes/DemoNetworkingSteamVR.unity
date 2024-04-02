@@ -342,7 +342,7 @@ PrefabInstance:
         type: 3}
       propertyPath: NetworkConfig.NetworkTransport
       value: 
-      objectReference: {fileID: 318964838}
+      objectReference: {fileID: 1896337951}
     - target: {fileID: 2726375245637212953, guid: ea55e4331fdd2b54eae63be77c46d320,
         type: 3}
       propertyPath: m_RootOrder
@@ -405,41 +405,8 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2726375245637212948, guid: ea55e4331fdd2b54eae63be77c46d320,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 318964838}
+      addedObject: {fileID: 1896337951}
   m_SourcePrefab: {fileID: 100100000, guid: ea55e4331fdd2b54eae63be77c46d320, type: 3}
---- !u!1 &318964837 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2726375245637212948, guid: ea55e4331fdd2b54eae63be77c46d320,
-    type: 3}
-  m_PrefabInstance: {fileID: 318964836}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &318964838
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 318964837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6960e84d07fb87f47956e7a81d71c4e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ProtocolType: 0
-  m_MaxPacketQueueSize: 128
-  m_MaxPayloadSize: 6144
-  m_HeartbeatTimeoutMS: 500
-  m_ConnectTimeoutMS: 1000
-  m_MaxConnectAttempts: 60
-  m_DisconnectTimeoutMS: 30000
-  ConnectionData:
-    Address: 127.0.0.1
-    Port: 7777
-    ServerListenAddress: 127.0.0.1
-  DebugSimulator:
-    PacketDelayMS: 0
-    PacketJitterMS: 0
-    PacketDropRate: 0
 --- !u!1 &482539574
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,6 +643,39 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 196dc123a77d0c746bb8876a350a80cc, type: 3}
+--- !u!1 &1896337947 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2726375245637212948, guid: ea55e4331fdd2b54eae63be77c46d320,
+    type: 3}
+  m_PrefabInstance: {fileID: 318964836}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1896337951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1896337947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6960e84d07fb87f47956e7a81d71c4e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ProtocolType: 0
+  m_MaxPacketQueueSize: 128
+  m_MaxPayloadSize: 6144
+  m_HeartbeatTimeoutMS: 500
+  m_ConnectTimeoutMS: 1000
+  m_MaxConnectAttempts: 60
+  m_DisconnectTimeoutMS: 30000
+  ConnectionData:
+    Address: 127.0.0.1
+    Port: 7777
+    ServerListenAddress: 127.0.0.1
+  DebugSimulator:
+    PacketDelayMS: 0
+    PacketJitterMS: 0
+    PacketDropRate: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

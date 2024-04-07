@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Photon.Pun;
 
-public class PhotonSpaceshipPart : MonoBehaviour
+public class SpaceshipPart : MonoBehaviour
 {
     // part attributes
     public int partID;
@@ -41,7 +40,9 @@ public class PhotonSpaceshipPart : MonoBehaviour
             if (partID < col_sp.partID)
             {
                 if (MergeIsPossible(collision.gameObject, false))
-                    gameObject.GetComponent<PhotonView>().RPC("Merge", RpcTarget.All, collision.gameObject.name);
+                {
+                    //gameObject.GetComponent<PhotonView>().RPC("Merge", RpcTarget.All, collision.gameObject.name);
+                }
                 else
                 {
                     fail.Play();
@@ -54,7 +55,9 @@ public class PhotonSpaceshipPart : MonoBehaviour
         {
             // if collision is with the spaceship parent and the merge is possible, this gameObject joins to the parent
             if (MergeIsPossible(collision.gameObject, true))
-                gameObject.GetComponent<PhotonView>().RPC("JoinToSpaceship", RpcTarget.All, collision.gameObject.name);
+            {
+                //gameObject.GetComponent<PhotonView>().RPC("JoinToSpaceship", RpcTarget.All, collision.gameObject.name);
+            }
             else
             {
                 fail.Play();
@@ -73,16 +76,17 @@ public class PhotonSpaceshipPart : MonoBehaviour
         return marked && sp.marked && isBody != sp.isBody;
     }
 
-    [PunRPC]
+    /*
+    //[PunRPC]
     // merge function merges self with the gameobject passed by parameter into a new gameobject
     void Merge(string name)
     {
         GameObject o = GameObject.Find(name);
 
         // Destroying self & o rigidbodies in order to avoid bugs with multiple rigidbodies
-        Destroy(gameObject.GetComponent<PhotonRigidbodyView>());
+        //Destroy(gameObject.GetComponent<PhotonRigidbodyView>());
         Destroy(gameObject.GetComponent<Rigidbody>());
-        Destroy(o.GetComponent<PhotonRigidbodyView>());
+        //Destroy(o.GetComponent<PhotonRigidbodyView>());
         Destroy(o.GetComponent<Rigidbody>());
 
         // creation of parent
@@ -112,7 +116,9 @@ public class PhotonSpaceshipPart : MonoBehaviour
 
         hit.Play();
     }
+    */
 
+    /*
     void ConfigPhotonView(GameObject spaceship)
     {
         PhotonView spaceship_pv = spaceship.GetComponent<PhotonView>();
@@ -126,15 +132,16 @@ public class PhotonSpaceshipPart : MonoBehaviour
         prv.m_SynchronizeAngularVelocity = true;
         prv.m_TeleportEnabled = true;
     }
+    */
 
-    [PunRPC]
+    //[PunRPC]
     // joins this gameObject to the spaceship object passed by parameter
     void JoinToSpaceship(string name)
     {
         GameObject spaceship = GameObject.Find(name);
 
         // Destroying self rigidbody in order to avoid bugs with multiple rigidbodies
-        Destroy(gameObject.GetComponent<PhotonRigidbodyView>());
+        //Destroy(gameObject.GetComponent<PhotonRigidbodyView>());
         Destroy(gameObject.GetComponent<Rigidbody>());
 
         // updating spaceship position to the point of collision
@@ -143,7 +150,7 @@ public class PhotonSpaceshipPart : MonoBehaviour
         // assigning self to spaceship
         gameObject.transform.parent = spaceship.transform;
         gameObject.transform.localPosition = relative_position;
-        Destroy(gameObject.GetComponent<PhotonView>());
+        //Destroy(gameObject.GetComponent<PhotonView>());
         marked = false;
 
         // unmarking body's spaceship
@@ -160,7 +167,7 @@ public class PhotonSpaceshipPart : MonoBehaviour
         materials.SetValue(Resources.Load<Material>("Materials/Blue"), 3);
     }
 
-    [PunRPC]
+    //[PunRPC]
     void ChangeColor()
     {
         Renderer rend = gameObject.GetComponent<Renderer>();

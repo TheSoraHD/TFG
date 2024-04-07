@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
-using Hashtable = ExitGames.Client.Photon.Hashtable;
+//using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class NGONetworkManager : NetworkManager
 {

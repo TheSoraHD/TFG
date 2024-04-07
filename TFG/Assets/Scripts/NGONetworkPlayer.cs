@@ -16,7 +16,7 @@ public class NGONetworkPlayer : NetworkBehaviour
 
     public Transform model;
     public Transform modelPlayer;
-    public LevelLoader levelLoader;
+    public NGOLevelLoader levelLoader;
     //private PhotonView photonView;
 
     public override void OnNetworkSpawn()
@@ -43,7 +43,7 @@ public class NGONetworkPlayer : NetworkBehaviour
         //modelPlayer = GameObject.Find("/NetworkPlayer/Model").transform;
         //player.position = transform.position;
 
-        levelLoader = GameObject.Find("_LevelLoader").GetComponent<LevelLoader>();
+        levelLoader = GameObject.Find("_LevelLoader").GetComponent<NGOLevelLoader>();
     }
 
     // Update is called once per frame

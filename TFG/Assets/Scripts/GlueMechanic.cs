@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class GlueMechanic : MonoBehaviour
+public class GlueMechanic : NetworkBehaviour
 {
 
     public AudioSource sound;
@@ -16,9 +17,9 @@ public class GlueMechanic : MonoBehaviour
     // Mark function only activates if the gameObject to mark is an spaceship part or the spaceship itself.
     void Mark(GameObject o, bool isParent)
     {
-        SpaceshipPart sp;
-        if (isParent) sp = o.transform.Find("Body").GetComponent<SpaceshipPart>();
-        else sp = o.GetComponent<SpaceshipPart>();
+        NGOSpaceshipPart sp;
+        if (isParent) sp = o.transform.Find("Body").GetComponent<NGOSpaceshipPart>();
+        else sp = o.GetComponent<NGOSpaceshipPart>();
 
         if (!sp.marked)
         {

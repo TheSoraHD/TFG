@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class SpaceshipPart : MonoBehaviour
+public class NGOSpaceshipPart : NetworkBehaviour
 {
     // part attributes
     public int partID;
@@ -36,7 +37,7 @@ public class SpaceshipPart : MonoBehaviour
         {
             // if the merge is possible, then both objects merge into a spaceship parent object
             // it also assures the merge only is activated from the lowest partID
-            SpaceshipPart col_sp = collision.gameObject.GetComponent<SpaceshipPart>();
+            NGOSpaceshipPart col_sp = collision.gameObject.GetComponent<NGOSpaceshipPart>();
             if (partID < col_sp.partID)
             {
                 if (MergeIsPossible(collision.gameObject, false))
@@ -62,7 +63,7 @@ public class SpaceshipPart : MonoBehaviour
             {
                 fail.Play();
                 marked = false;
-                collision.transform.Find("Body").GetComponent<SpaceshipPart>().marked = false;
+                collision.transform.Find("Body").GetComponent<NGOSpaceshipPart>().marked = false;
             }
         }
     }
@@ -70,16 +71,15 @@ public class SpaceshipPart : MonoBehaviour
     // checks if merge is possible when there are two objects marked
     bool MergeIsPossible(GameObject o, bool isParent)
     {
-        SpaceshipPart sp;
-        if (isParent) sp = o.transform.Find("Body").GetComponent<SpaceshipPart>();
-        else sp = o.GetComponent<SpaceshipPart>();
+        NGOSpaceshipPart sp;
+        if (isParent) sp = o.transform.Find("Body").GetComponent<NGOSpaceshipPart>();
+        else sp = o.GetComponent<NGOSpaceshipPart>();
         return marked && sp.marked && isBody != sp.isBody;
     }
 
-    /*
-    //[PunRPC]
+    [Rpc(SendTo.Everyone)]
     // merge function merges self with the gameobject passed by parameter into a new gameobject
-    void Merge(string name)
+    void MergeRpc(string name)
     {
         GameObject o = GameObject.Find(name);
 
@@ -88,6 +88,8 @@ public class SpaceshipPart : MonoBehaviour
         Destroy(gameObject.GetComponent<Rigidbody>());
         //Destroy(o.GetComponent<PhotonRigidbodyView>());
         Destroy(o.GetComponent<Rigidbody>());
+
+        /*
 
         // creation of parent
         GameObject spaceship = new GameObject("Spaceship", typeof(Rigidbody), typeof(PhotonView), typeof(PhotonRigidbodyView));
@@ -115,8 +117,9 @@ public class SpaceshipPart : MonoBehaviour
         spaceship_rb.isKinematic = false;
 
         hit.Play();
+            */
     }
-    */
+
 
     /*
     void ConfigPhotonView(GameObject spaceship)
@@ -134,9 +137,9 @@ public class SpaceshipPart : MonoBehaviour
     }
     */
 
-    //[PunRPC]
+    [Rpc(SendTo.Everyone)]
     // joins this gameObject to the spaceship object passed by parameter
-    void JoinToSpaceship(string name)
+    void JoinToSpaceshipRpc(string name)
     {
         GameObject spaceship = GameObject.Find(name);
 
@@ -154,7 +157,7 @@ public class SpaceshipPart : MonoBehaviour
         marked = false;
 
         // unmarking body's spaceship
-        spaceship.transform.Find("Body").GetComponent<SpaceshipPart>().marked = false;
+        spaceship.transform.Find("Body").GetComponent<NGOSpaceshipPart>().marked = false;
 
         hit.Play();
     }
@@ -167,8 +170,8 @@ public class SpaceshipPart : MonoBehaviour
         materials.SetValue(Resources.Load<Material>("Materials/Blue"), 3);
     }
 
-    //[PunRPC]
-    void ChangeColor()
+    [Rpc(SendTo.Everyone)]
+    public void ChangeColorRpc()
     {
         Renderer rend = gameObject.GetComponent<Renderer>();
 

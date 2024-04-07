@@ -234,6 +234,7 @@ GameObject:
   - component: {fileID: 5087068202730482112}
   - component: {fileID: 1526198363737434224}
   - component: {fileID: 8503105388263277026}
+  - component: {fileID: 3088521060918078210}
   m_Layer: 0
   m_Name: NetworkPlayer
   m_TagString: Player
@@ -283,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1794816757
+  GlobalObjectIdHash: 2093421120
   InScenePlacedSourceGlobalObjectIdHash: 3843087647
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -357,6 +358,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ActionAssets:
   - {fileID: -944628639613478452, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!136 &3088521060918078210
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613227623096030557}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.3
+  m_Height: 1.8
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1 &7134583103933768521
 GameObject:
   m_ObjectHideFlags: 0

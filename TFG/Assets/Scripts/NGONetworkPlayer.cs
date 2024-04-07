@@ -17,7 +17,6 @@ public class NGONetworkPlayer : NetworkBehaviour
     public Transform model;
     public Transform modelPlayer;
     public NGOLevelLoader levelLoader;
-    //private PhotonView photonView;
 
     public override void OnNetworkSpawn()
     {
@@ -43,7 +42,7 @@ public class NGONetworkPlayer : NetworkBehaviour
         //modelPlayer = GameObject.Find("/NetworkPlayer/Model").transform;
         //player.position = transform.position;
 
-        levelLoader = GameObject.Find("_LevelLoader").GetComponent<NGOLevelLoader>();
+        levelLoader = GameObject.Find("_NGOLevelLoader").GetComponent<NGOLevelLoader>();
     }
 
     // Update is called once per frame
@@ -72,19 +71,20 @@ public class NGONetworkPlayer : NetworkBehaviour
 
             MapPosition(model, modelPlayer);
         }
+        */
 
-        if (photonView.Owner.IsMasterClient)
-        {
+        //TO-DO: IsMasterClient?
+        //if (photonView.Owner.IsMasterClient)
+        //{
             if (!levelLoader.platformActive) levelLoader.CheckConditions();
             else levelLoader.LevelUpdate();
 
-            if (Input.GetKeyDown(KeyCode.Alpha0)) levelLoader.ChangeLevel(0);
-            if (Input.GetKeyDown(KeyCode.Alpha1)) levelLoader.ChangeLevel(1);
-            if (Input.GetKeyDown(KeyCode.Alpha2)) levelLoader.ChangeLevel(2);
-            if (Input.GetKeyDown(KeyCode.Alpha3)) levelLoader.ChangeLevel(3);
-            if (Input.GetKeyDown(KeyCode.Alpha4)) levelLoader.ChangeLevel(4);
-        }
-        */
+            //if (Input.GetKeyDown(KeyCode.Alpha0)) levelLoader.ChangeLevel(0);
+            //if (Input.GetKeyDown(KeyCode.Alpha1)) levelLoader.ChangeLevel(1);
+            //if (Input.GetKeyDown(KeyCode.Alpha2)) levelLoader.ChangeLevel(2);
+            //if (Input.GetKeyDown(KeyCode.Alpha3)) levelLoader.ChangeLevel(3);
+            //if (Input.GetKeyDown(KeyCode.Alpha4)) levelLoader.ChangeLevel(4);
+        //}
     }
     void MapPosition(Transform target, Transform rigTransform)
     {

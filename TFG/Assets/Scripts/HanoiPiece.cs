@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
-public class HanoiPiece : MonoBehaviour
+public class HanoiPiece : NetworkBehaviour
 {
     // num players needed to move the piece
     public int numPlayers;

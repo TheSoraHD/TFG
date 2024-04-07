@@ -48,15 +48,13 @@ public class NGOLevelLoader : NetworkBehaviour
 
     public bool CheckPlayersPosition()
     {
-        /*
-        var photonViews = Object.FindObjectsOfType<PhotonView>();
+        var photonViews = Object.FindObjectsOfType<NGONetworkPlayer>();
 
         bool playersReady = true;
 
         foreach (var view in photonViews)
         {
-            if (view.Owner != null && view.gameObject.tag == "Player")
-            {
+            //if (view.Owner != null && view.gameObject.tag == "Player"){
                 Vector3 position = view.gameObject.transform.GetChild(0).position;
 
                 // check player position inside passLevel platform
@@ -64,11 +62,10 @@ public class NGOLevelLoader : NetworkBehaviour
                 if (minBoundingBox.x < position.x && position.x < maxBoundingBox.x && minBoundingBox.z < position.z && position.z < maxBoundingBox.z) insideBox = true;
 
                 playersReady &= insideBox;
-            }
-        }*/
+            //}
+        }
 
-        //return playersReady;
-        return false;
+        return playersReady;
     }
 
     void GetPlatformMaxMinCoord()
@@ -111,8 +108,8 @@ public class NGOLevelLoader : NetworkBehaviour
         taskController.CheckConditions();
     }
 
-    //[PunRPC]
-    void ActivatePlatform(int nextlvl)
+    [Rpc(SendTo.Everyone)]
+    public void ActivatePlatformRpc(int nextlvl)
     {
         platform.SetActive(true);
         platformActive = true;

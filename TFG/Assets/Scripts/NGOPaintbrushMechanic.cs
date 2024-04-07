@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class PaintbrushMechanic : MonoBehaviour
+public class PaintbrushMechanic : NetworkBehaviour
 {
 
     public AudioSource sound;
@@ -11,7 +12,7 @@ public class PaintbrushMechanic : MonoBehaviour
     {
         if (collision.collider.tag == "SpaceshipPart")
         {
-            //collision.collider.GetComponent<PhotonView>().RPC("ChangeColor", RpcTarget.All);
+            collision.collider.GetComponent<NGOSpaceshipPart>().ChangeColorRpc();
 
             sound.Play();
         }

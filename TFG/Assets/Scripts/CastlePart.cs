@@ -1,14 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 
-public class CastlePart : MonoBehaviour
+public class NGOCastlePart : NetworkBehaviour
 {
-    public GameObject platform_object;
+    public GameObject platform_object; //SELF???
     public GameObject[] requirements;
-
-    //TO-DO: NGO ALTERNATIVE
-    //public PhotonView photonView;
 
     public AudioSource sound;
 
@@ -45,8 +43,7 @@ public class CastlePart : MonoBehaviour
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
-                //TO-DO: NGO ALTERNATIVE
-                //photonView.RPC("ChangeToState2", RpcTarget.All);
+                ChangeToState2Rpc();
             }
         }
     }
@@ -56,14 +53,13 @@ public class CastlePart : MonoBehaviour
         bool res = true;
         for (int i = 0; i < requirements.Length; ++i)
         {
-            res = res && requirements[i].GetComponent<CastlePart>().state == 2;
+            res = res && requirements[i].GetComponent<NGOCastlePart>().state == 2;
         }
         return res;
     }
 
-    //TO-DO: NGO ALTERNATIVE
-    //[PunRPC]
-    void ChangeToState2()
+    [Rpc(SendTo.Everyone)]
+    void ChangeToState2Rpc()
     {
         sound.Play();
         state = 2;

@@ -14,7 +14,7 @@ public class NGOTaskController : NetworkBehaviour
     [SerializeField]
     private bool firstTime;
 
-    //public PhotonView levelLoader, photonView;
+    public NGOLevelLoader levelLoader;
 
     void Awake()
     {
@@ -38,59 +38,62 @@ public class NGOTaskController : NetworkBehaviour
 
     public void CheckConditions()
     {
-        if (currentLevel == 0)
+        switch (currentLevel)
         {
-            IntroButton button = GameObject.Find("Button").GetComponent<IntroButton>();
-            if (button.pushed && firstTime)
-            {
-                //levelLoader.ActivatePlatform(1);
-                //photonView.PlayLevelClear();
-                firstTime = false;
-            }
-        }
-        else if (currentLevel == 1)
-        {
-            GameObject spaceship = GameObject.Find("Spaceship");
-            if (spaceship != null && spaceship.transform.childCount == 6)
-            {
-                if (CheckSpaceshipColor(spaceship) && firstTime)
-                {
-                    //levelLoader.ActivatePlatform(2);
-                    //photonView.PlayLevelClear();
-                    //photonView.DestroySpaceship("Spaceship");
-                    firstTime = false;
-                }
-            }
-        }
-        else if (currentLevel == 2)
-        {
-            GameObject platform = GameObject.Find("/Platform3");
-            GameObject[] HanoiPieces = GameObject.FindGameObjectsWithTag("HanoiPiece");
+            case 0: //INTRO
+                IntroButton button = GameObject.Find("Button").GetComponent<IntroButton>();
+                if (button.pushed && firstTime) LevelCleared(currentLevel);
+                break;
 
-            if (platform != null && HanoiPieces.Length > 0)
-            {
-                if (CheckHanoiPieces(platform, HanoiPieces) && firstTime)
-                {
-                    //levelLoader.ActivatePlatform(3);
-                    //photonView.PlayLevelClear();
-                    firstTime = false;
+            case 1: //SPACESHIP
+                GameObject spaceship = GameObject.Find("Spaceship");
+                if (spaceship != null && spaceship.transform.childCount == 6) {
+                    if (CheckSpaceshipColor(spaceship) && firstTime) {
+                        LevelCleared(currentLevel);
+                        //photonView.DestroySpaceship("Spaceship");
+                        Destroy(spaceship);
+                    }
                 }
-            }
-        }
-        else if (currentLevel == 3)
-        {
-            CastlePart[] castleParts = Resources.FindObjectsOfTypeAll<CastlePart>();
+                break;
 
-            if (castleParts.Length > 0)
-            {
-                if (CheckCastleParts(castleParts) && firstTime)
+            case 2: //HANOI
+                GameObject platform = GameObject.Find("/Platform3");
+                GameObject[] HanoiPieces = GameObject.FindGameObjectsWithTag("HanoiPiece");
+
+                if (platform != null && HanoiPieces.Length > 0)
                 {
-                    //levelLoader.ActivatePlatform(4);
-                    //photonView.PlayLevelClear();
-                    firstTime = false;
+                    if (CheckHanoiPieces(platform, HanoiPieces) && firstTime)
+                    {
+                        LevelCleared(currentLevel);
+                    }
                 }
-            }
+                break;
+
+            case 3: //CASTLE
+                NGOCastlePart[] castleParts = Resources.FindObjectsOfTypeAll<NGOCastlePart>();
+
+                if (castleParts.Length > 0)
+                {
+                    if (CheckCastleParts(castleParts) && firstTime)
+                    {
+                        LevelCleared(currentLevel);
+                    }
+                }
+                break;
+
+            case 4: //CAR
+                //TO-DO
+                break;
+
+            default:
+                break;
         }
+    }
+    private void LevelCleared(int currentLevel)
+    {
+        levelLoader.ActivatePlatformRpc(currentLevel + 1);
+        PlayLevelClearRpc();
+        firstTime = false;
     }
 
     public void ResetFirstTime()
@@ -110,7 +113,7 @@ public class NGOTaskController : NetworkBehaviour
         for (int i = 0; i < spaceship.transform.childCount; ++i)
         {
             GameObject piece = spaceship.transform.GetChild(i).gameObject;
-            SpaceshipPart sp = piece.GetComponent<SpaceshipPart>();
+            NGOSpaceshipPart sp = piece.GetComponent<NGOSpaceshipPart>();
             Renderer rend = piece.GetComponent<Renderer>();
             res &= sp.materialAssigned.name == rend.sharedMaterial.name;
         }
@@ -131,10 +134,10 @@ public class NGOTaskController : NetworkBehaviour
     }
 
     // checks that all castle pieces are placed in the platform
-    bool CheckCastleParts(CastlePart[] CastleParts)
+    bool CheckCastleParts(NGOCastlePart[] CastleParts)
     {
         bool res = true;
-        foreach (CastlePart castlePart in CastleParts)
+        foreach (NGOCastlePart castlePart in CastleParts)
         {
             res &= castlePart.state == 2;
         }

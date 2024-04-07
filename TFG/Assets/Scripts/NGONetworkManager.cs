@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using System.IO;
+using UnityEngine.SceneManagement;
 //using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class NGONetworkManager : NetworkManager
@@ -14,7 +16,7 @@ public class NGONetworkManager : NetworkManager
 
     void Awake()
     {
-        // if an instance already exissts and it's not this one - destroy us
+        // if an instance already exists and it's not this one - destroy us
         if (instance != null && instance != this)
             gameObject.SetActive(false);
         else
@@ -23,14 +25,6 @@ public class NGONetworkManager : NetworkManager
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //PhotonNetwork.AutomaticallySyncScene = true;
-        //PhotonNetwork.ConnectUsingSettings();
-        Debug.Log("Try Connect To Server...");
     }
 
 
@@ -71,15 +65,33 @@ public class NGONetworkManager : NetworkManager
 
     public void LoadLevel(int level)
     {
-        /*
-        if (PhotonNetwork.IsMasterClient)
-            PhotonNetwork.LoadLevel(level);
-        */
+        if (IsServer)
+        {
+            //Get Level Name From Build Index
+            string path = SceneUtility.GetScenePathByBuildIndex(level);
+            int slash = path.LastIndexOf('/');
+            string name = path.Substring(slash + 1);
+            int dot = name.LastIndexOf('.');
+
+            SceneManager.LoadScene(name.Substring(0, dot), UnityEngine.SceneManagement.LoadSceneMode.Single);
+        }
     }
 
     public bool IsMasterClient()
     {
         //return PhotonNetwork.IsMasterClient;
         return false;
+    }
+
+    public void Create()
+    {
+        Singleton.StartHost();
+        //NetworkManager.Singleton.StartHost();
+    }
+
+    public void Join()
+    {
+        StartClient();
+        //NetworkManager.Singleton.StartClient();
     }
 }

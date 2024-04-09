@@ -91,7 +91,7 @@ public class NGONetworkManager : NetworkManager
 
     public void Join()
     {
-        StartClient();
+        Singleton.StartClient();
         //NetworkManager.Singleton.StartClient();
     }
 }

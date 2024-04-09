@@ -1175,7 +1175,19 @@ MonoBehaviour:
   m_Group: {fileID: 1459987461}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1459987462}
+        m_TargetAssemblyTypeName: RadioButtonSystem, Assembly-CSharp
+        m_MethodName: ApplyModel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &562164892
 GameObject:
@@ -1652,7 +1664,19 @@ MonoBehaviour:
   m_Group: {fileID: 1459987461}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1459987462}
+        m_TargetAssemblyTypeName: RadioButtonSystem, Assembly-CSharp
+        m_MethodName: ApplyModel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &826504134
 GameObject:
@@ -2807,11 +2831,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca7d9fb8a49cfae49b4dac65040920ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ballPrefab: {fileID: 5193842429868918741, guid: 68d3b4e9761fee244bced13e9d8f2383,
+  ballPrefab: {fileID: 6613227623096030557, guid: 76dc8a0136e4c0f4597692c7d10852a4,
     type: 3}
-  maniquinPrefab: {fileID: 6613227623096030557, guid: 76dc8a0136e4c0f4597692c7d10852a4,
+  maniquinPrefab: {fileID: 453591246640993459, guid: b7b121e845353f047b0e36a729f4f685,
     type: 3}
-  humanPrefab: {fileID: 6613227623096030557, guid: 76dc8a0136e4c0f4597692c7d10852a4,
+  humanPrefab: {fileID: 3052913928627553847, guid: bfc086f80e177834fb56beac436599d2,
     type: 3}
   networkManager: {fileID: 1923080004}
 --- !u!1 &1475017455
@@ -2897,18 +2921,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1459987462}
-        m_TargetAssemblyTypeName: RadioButtonSystem, Assembly-CSharp
-        m_MethodName: ApplyModel
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1923080008}
         m_TargetAssemblyTypeName: NGONetworkManager, Assembly-CSharp
         m_MethodName: Create
@@ -3055,7 +3067,19 @@ MonoBehaviour:
   m_Group: {fileID: 1459987461}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1459987462}
+        m_TargetAssemblyTypeName: RadioButtonSystem, Assembly-CSharp
+        m_MethodName: ApplyModel
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1546282220
 GameObject:
@@ -3594,8 +3618,7 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 1923080005}
-    PlayerPrefab: {fileID: 6613227623096030557, guid: 76dc8a0136e4c0f4597692c7d10852a4,
-      type: 3}
+    PlayerPrefab: {fileID: 0}
     Prefabs:
       NetworkPrefabsLists:
       - {fileID: 11400000, guid: b569c3c18d36ef545963da41c3195e7f, type: 2}

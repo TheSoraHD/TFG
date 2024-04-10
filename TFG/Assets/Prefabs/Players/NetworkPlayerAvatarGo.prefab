@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkPlayerAvatarGo
       objectReference: {fileID: 0}
+    - target: {fileID: 1042330216963452, guid: 5eb8231d2f768124499569e5b371bf1e, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 1836848365294026, guid: 5eb8231d2f768124499569e5b371bf1e, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -146,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3762398561
+  GlobalObjectIdHash: 3175168888
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1

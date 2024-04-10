@@ -70,9 +70,10 @@ GameObject:
   - component: {fileID: 400996000669409735}
   - component: {fileID: 7695522871688488022}
   - component: {fileID: -4108288742571175832}
+  - component: {fileID: 2812198374558563460}
   m_Layer: 0
   m_Name: NetworkPlayerManiquin
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -152,6 +153,29 @@ MonoBehaviour:
     actionPath: /actions/default/in/Joystick
     needsReinit: 0
   hmdTransform: {fileID: 1995400477274740709}
+--- !u!136 &2812198374558563460
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453591246640993459}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 1.64
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &741831078424202191
 GameObject:
   m_ObjectHideFlags: 0

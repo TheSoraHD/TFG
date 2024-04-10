@@ -528,15 +528,15 @@ MonoBehaviour:
   body: {fileID: 5998718679388355454}
   otherFoot: {fileID: 1552281506410066389}
   speed: 4
-  stepDistance: 0.2
+  stepDistance: 0.5
   stepLength: 0.2
   sideStepLength: 0.1
   stepHeight: 0.3
-  footOffset: {x: 0, y: 0, z: 0}
+  footOffset: {x: 0, y: 0, z: 0.1}
   footRotOffset: {x: -120, y: 180, z: 0}
   footYPosOffset: 0.1
   rayStartYOffset: 0
-  rayLength: 1.5
+  rayLength: 3.8
 --- !u!1 &5567329577993829279
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,15 +854,15 @@ MonoBehaviour:
   body: {fileID: 5998718679388355454}
   otherFoot: {fileID: 6941357768615123813}
   speed: 4
-  stepDistance: 0.2
+  stepDistance: 0.5
   stepLength: 0.2
   sideStepLength: 0.1
   stepHeight: 0.3
-  footOffset: {x: 0, y: 0, z: 0}
+  footOffset: {x: 0, y: 0, z: -0.1}
   footRotOffset: {x: -120, y: 180, z: 0}
   footYPosOffset: 0.1
   rayStartYOffset: 0
-  rayLength: 1.5
+  rayLength: 3.8
 --- !u!1 &8824112271670420304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1175,10 +1175,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3852893219331515241}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8481908af3625b44bbba4d3cd77c4adf,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7414475206103776414}
   m_SourcePrefab: {fileID: 100100000, guid: 8481908af3625b44bbba4d3cd77c4adf, type: 3}
 --- !u!4 &38667961787568965 stripped
 Transform:
@@ -1596,7 +1592,7 @@ MonoBehaviour:
     ikTarget: {fileID: 152101311557134899}
     trackingPositionOffset: {x: 0, y: 0, z: 0}
     trackingRotationOffset: {x: 0, y: -90, z: -90}
-  headBodyPositionOffset: {x: 0, y: -0.65, z: 0}
+  headBodyPositionOffset: {x: 0, y: -1.8, z: 0}
   headBodyYawOffset: 0
 --- !u!114 &3852893219331515241
 MonoBehaviour:
@@ -1668,23 +1664,6 @@ MonoBehaviour:
       m_Reference: {fileID: 6558622148059887818, guid: c348712bda248c246b8c49b3db54643f,
         type: 3}
   animator: {fileID: 423221884336513284}
---- !u!114 &7414475206103776414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6373836434700313028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7028313a31a8934db2c6f6b5f743416, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 1
-  input:
-    actionPath: /actions/default/in/Joystick
-    needsReinit: 0
-  hmdTransform: {fileID: 0}
 --- !u!4 &6407498679707449355 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8333627713332763490, guid: 8481908af3625b44bbba4d3cd77c4adf,

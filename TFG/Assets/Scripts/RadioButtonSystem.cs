@@ -15,6 +15,7 @@ public class RadioButtonSystem : MonoBehaviour
     private void Start()
     {
         toggleGroup = GetComponent<ToggleGroup>();
+        ApplyModel();
     }
 
     public void ApplyModel()

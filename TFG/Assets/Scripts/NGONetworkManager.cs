@@ -4,6 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 using System.IO;
 using UnityEngine.SceneManagement;
+using Unity.Netcode.Transports.UTP;
 //using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class NGONetworkManager : NetworkManager
@@ -91,6 +92,7 @@ public class NGONetworkManager : NetworkManager
 
     public void Join()
     {
+        //Singleton.GetComponent<UnityTransport>().SetConnectionData(IP, 7777);
         Singleton.StartClient();
         //NetworkManager.Singleton.StartClient();
     }

@@ -68,6 +68,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6255357873815848496}
   - component: {fileID: 400996000669409735}
+  - component: {fileID: -2218390677371878544}
   - component: {fileID: 7695522871688488022}
   - component: {fileID: -4108288742571175832}
   - component: {fileID: 2812198374558563460}
@@ -107,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1401749524
+  GlobalObjectIdHash: 3720631094
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -116,6 +117,18 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
+--- !u!114 &-2218390677371878544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453591246640993459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b07768bcffa06d14b880e5d139a18008, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7695522871688488022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,6 +146,7 @@ MonoBehaviour:
   playerLeftHand: {fileID: 1047482127445035350}
   playerRightHand: {fileID: 5548627619574440797}
   meshToDisable: []
+  cameraToDisable: {fileID: 0}
   model: {fileID: 0}
   modelPlayer: {fileID: 0}
   levelLoader: {fileID: 0}

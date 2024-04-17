@@ -78,9 +78,8 @@ public class NGONetworkPlayer : NetworkBehaviour
         }
         */
 
-        //TO-DO: IsMasterClient?
-        //if (photonView.Owner.IsMasterClient)
-        //{
+        if (IsServer)
+        {
             if (!levelLoader.platformActive) levelLoader.CheckConditions();
             else levelLoader.LevelUpdate();
 
@@ -90,7 +89,7 @@ public class NGONetworkPlayer : NetworkBehaviour
             if (Input.GetKeyDown(KeyCode.Alpha3)) levelLoader.ChangeLevel(3);
             if (Input.GetKeyDown(KeyCode.Alpha4)) levelLoader.ChangeLevel(4);
             if (Input.GetKeyDown(KeyCode.Alpha5)) levelLoader.ChangeLevel(5);
-        //}
+        }
     }
     void MapPosition(Transform target, Transform rigTransform)
     {

@@ -37,3 +37,6 @@ sysinfo.txt
 *.apk
 *.unitypackage
 *.log
+
+#ParrelSync clone
+TFG_clone_0/

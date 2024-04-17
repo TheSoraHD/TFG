@@ -12,6 +12,8 @@ public class NGONetworkManager : NetworkManager
     // instance
     public static NGONetworkManager instance;
 
+    public string IP = "127.0.0.1";
+
     // Custom properties
     public const string MAP_PROP_KEY = "map";
 
@@ -92,7 +94,7 @@ public class NGONetworkManager : NetworkManager
 
     public void Join()
     {
-        //Singleton.GetComponent<UnityTransport>().SetConnectionData(IP, 7777);
+        Singleton.GetComponent<UnityTransport>().SetConnectionData(IP, 7777);
         Singleton.StartClient();
         //NetworkManager.Singleton.StartClient();
     }

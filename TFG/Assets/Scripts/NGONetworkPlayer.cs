@@ -12,6 +12,7 @@ public class NGONetworkPlayer : NetworkBehaviour
     public Transform playerRightHand;
 
     public Renderer[] meshToDisable;
+    public Camera cameraToDisable;
 
 
     public Transform model;
@@ -27,6 +28,10 @@ public class NGONetworkPlayer : NetworkBehaviour
             {
                 item.enabled = false;
             }
+        }
+        else
+        {
+            cameraToDisable.enabled = false;
         }
     }
 

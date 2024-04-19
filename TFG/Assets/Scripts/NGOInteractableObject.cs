@@ -11,7 +11,7 @@ using static Valve.VR.InteractionSystem.Hand;
 public class NGOInteractableObject : NetworkBehaviour
 {
     [Tooltip("The flags used to attach this object to the hand.")]
-    public NGOFallbackHand.AttachmentFlags attachmentFlags = NGOFallbackHand.AttachmentFlags.ParentToHand | NGOFallbackHand.AttachmentFlags.VelocityMovement;
+    public NGOHand.AttachmentFlags attachmentFlags = NGOHand.AttachmentFlags.ParentToHand | NGOHand.AttachmentFlags.VelocityMovement;
 
     [Tooltip("When detaching the object, should it return to its original parent?")]
     public bool restoreOriginalParent = false;
@@ -25,11 +25,11 @@ public class NGOInteractableObject : NetworkBehaviour
     protected new Rigidbody rigidbody;
 
     [System.NonSerialized]
-    public NGOFallbackHand attachedToHand;
+    public NGOHand attachedToHand;
 
 
-    public delegate void OnAttachedToHandDelegate(NGOFallbackHand hand);
-    public delegate void OnDetachedFromHandDelegate(NGOFallbackHand hand);
+    public delegate void OnAttachedToHandDelegate(NGOHand hand);
+    public delegate void OnDetachedFromHandDelegate(NGOHand hand);
 
     public event OnAttachedToHandDelegate onAttachedToHand;
     public event OnDetachedFromHandDelegate onDetachedFromHand;
@@ -37,8 +37,8 @@ public class NGOInteractableObject : NetworkBehaviour
 
 
     [System.NonSerialized]
-    public List<NGOFallbackHand> hoveringHands = new List<NGOFallbackHand>();
-    public NGOFallbackHand hoveringHand
+    public List<NGOHand> hoveringHands = new List<NGOHand>();
+    public NGOHand hoveringHand
     {
         get
         {
@@ -62,7 +62,7 @@ public class NGOInteractableObject : NetworkBehaviour
         rigidbody.maxAngularVelocity = 50.0f;
     }
 
-    protected virtual void OnHandHoverBegin(NGOFallbackHand hand)
+    protected virtual void OnHandHoverBegin(NGOHand hand)
     {
         wasHovering = isHovering;
         isHovering = true;
@@ -70,7 +70,7 @@ public class NGOInteractableObject : NetworkBehaviour
         hoveringHands.Add(hand);
     }
 
-    protected virtual void OnHandHoverEnd(NGOFallbackHand hand)
+    protected virtual void OnHandHoverEnd(NGOHand hand)
     {
         wasHovering = isHovering;
 
@@ -80,7 +80,7 @@ public class NGOInteractableObject : NetworkBehaviour
             isHovering = false;
     }
 
-    protected virtual void HandHoverUpdate(NGOFallbackHand hand)
+    protected virtual void HandHoverUpdate(NGOHand hand)
     {
         GrabTypes startingGrabType = hand.GetGrabStarting();
 
@@ -90,7 +90,7 @@ public class NGOInteractableObject : NetworkBehaviour
         }
     }
 
-    protected virtual void OnAttachedToHand(NGOFallbackHand hand)
+    protected virtual void OnAttachedToHand(NGOHand hand)
     {
         //Debug.Log("<b>[SteamVR Interaction]</b> Pickup: " + hand.GetGrabStarting().ToString());
 
@@ -113,7 +113,7 @@ public class NGOInteractableObject : NetworkBehaviour
 
 
     //-------------------------------------------------
-    protected virtual void OnDetachedFromHand(NGOFallbackHand hand)
+    protected virtual void OnDetachedFromHand(NGOHand hand)
     {
         if (onDetachedFromHand != null)
             onDetachedFromHand.Invoke(hand);
@@ -126,7 +126,7 @@ public class NGOInteractableObject : NetworkBehaviour
         rigidbody.interpolation = hadInterpolation;
     }
 
-    protected virtual void HandAttachedUpdate(NGOFallbackHand hand)
+    protected virtual void HandAttachedUpdate(NGOHand hand)
     {
         if (hand.IsGrabEnding(this.gameObject)){
             hand.DetachObject(gameObject, restoreOriginalParent);

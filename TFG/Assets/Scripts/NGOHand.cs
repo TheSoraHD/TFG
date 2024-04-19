@@ -8,7 +8,7 @@ using Valve.VR.InteractionSystem;
 using Valve.VR;
 
 
-public class NGOFallbackHand : MonoBehaviour
+public class NGOHand : MonoBehaviour
 {
     // The flags used to determine how an object is attached to the hand.
     [Flags]
@@ -30,7 +30,7 @@ public class NGOFallbackHand : MonoBehaviour
                                                           AttachmentFlags.TurnOnKinematic |
                                                           AttachmentFlags.SnapOnAttach;
 
-    public NGOFallbackHand otherHand;
+    public NGOHand otherHand;
     public SteamVR_Input_Sources handType;
 
     public SteamVR_Behaviour_Pose trackedObject;
@@ -392,7 +392,7 @@ public class NGOFallbackHand : MonoBehaviour
         attachedObject.interactable = objectToAttach.GetComponent<NGOInteractableObject>();
         attachedObject.allowTeleportWhileAttachedToHand = objectToAttach.GetComponent<AllowTeleportWhileAttachedToHand>();
         attachedObject.handAttachmentPointTransform = this.transform;
-
+        /*
         if (attachedObject.interactable != null)
         {
             if (attachedObject.interactable.attachEaseIn)
@@ -421,6 +421,7 @@ public class NGOFallbackHand : MonoBehaviour
                 SetTemporarySkeletonRangeOfMotion(attachedObject.interactable.setRangeOfMotionOnPickup);
 
         }
+        */
 
         attachedObject.originalParent = objectToAttach.transform.parent != null ? objectToAttach.transform.parent.gameObject : null;
 
@@ -464,6 +465,7 @@ public class NGOFallbackHand : MonoBehaviour
 
         if (attachedObject.HasAttachFlag(AttachmentFlags.SnapOnAttach))
         {
+            /*
             if (attachedObject.interactable != null && attachedObject.interactable.skeletonPoser != null && HasSkeleton())
             {
                 SteamVR_Skeleton_PoseSnapshot pose = attachedObject.interactable.skeletonPoser.GetBlendedPose(skeleton);
@@ -477,7 +479,8 @@ public class NGOFallbackHand : MonoBehaviour
             }
             else
             {
-                if (attachmentOffset != null)
+            */
+            if (attachmentOffset != null)
                 {
                     //offset the object from the hand by the positional and rotational difference between the offset transform and the attached object
                     Quaternion rotDiff = Quaternion.Inverse(attachmentOffset.transform.rotation) * objectToAttach.transform.rotation;
@@ -497,7 +500,7 @@ public class NGOFallbackHand : MonoBehaviour
 
                 attachedObject.initialPositionalOffset = attachedObject.handAttachmentPointTransform.InverseTransformPoint(followPoint.position);
                 attachedObject.initialRotationalOffset = Quaternion.Inverse(attachedObject.handAttachmentPointTransform.rotation) * followPoint.rotation;
-            }
+            //}
         }
         else
         {

@@ -113,7 +113,7 @@ public class NGOHand : MonoBehaviour
 
     public bool hoverLocked { get; private set; }
 
-    private Interactable _hoveringInteractable;
+    private NGOInteractableObject _hoveringInteractable;
 
     private TextMesh debugText;
     private int prevOverlappingColliders = 0;
@@ -150,7 +150,7 @@ public class NGOHand : MonoBehaviour
     //-------------------------------------------------
     // The Interactable object this Hand is currently hovering over
     //-------------------------------------------------
-    public Interactable hoveringInteractable
+    public NGOInteractableObject hoveringInteractable
     {
         get { return _hoveringInteractable; }
         set
@@ -504,6 +504,7 @@ public class NGOHand : MonoBehaviour
         }
         else
         {
+            /*
             if (attachedObject.interactable != null && attachedObject.interactable.skeletonPoser != null && HasSkeleton())
             {
                 attachedObject.initialPositionalOffset = attachedObject.handAttachmentPointTransform.InverseTransformPoint(objectToAttach.transform.position);
@@ -511,6 +512,7 @@ public class NGOHand : MonoBehaviour
             }
             else
             {
+            */
                 if (attachmentOffset != null)
                 {
                     //get the initial positional and rotational offsets between the hand and the offset transform
@@ -528,7 +530,7 @@ public class NGOHand : MonoBehaviour
                     attachedObject.initialPositionalOffset = attachedObject.handAttachmentPointTransform.InverseTransformPoint(objectToAttach.transform.position);
                     attachedObject.initialRotationalOffset = Quaternion.Inverse(attachedObject.handAttachmentPointTransform.rotation) * objectToAttach.transform.rotation;
                 }
-            }
+            //}
         }
 
 
@@ -553,11 +555,13 @@ public class NGOHand : MonoBehaviour
             }
         }
 
+        /*
         if (attachedObject.interactable != null && attachedObject.interactable.attachEaseIn)
         {
             attachedObject.attachedObject.transform.position = attachedObject.easeSourcePosition;
             attachedObject.attachedObject.transform.rotation = attachedObject.easeSourceRotation;
         }
+        */
 
         attachedObjects.Add(attachedObject);
 
@@ -599,7 +603,7 @@ public class NGOHand : MonoBehaviour
 
             GameObject prevTopObject = currentAttachedObject;
 
-
+            /*
             if (attachedObjects[index].interactable != null)
             {
                 if (attachedObjects[index].interactable.hideHandOnAttach)
@@ -617,6 +621,7 @@ public class NGOHand : MonoBehaviour
                 if (attachedObjects[index].interactable.setRangeOfMotionOnPickup != SkeletalMotionRangeChange.None)
                     ResetTemporarySkeletonRangeOfMotion();
             }
+            */
 
             Transform parentTransform = null;
             if (attachedObjects[index].isParentedToHand)
@@ -650,11 +655,13 @@ public class NGOHand : MonoBehaviour
                 }
             }
 
+            /*
             if (attachedObjects[index].interactable != null && attachedObjects[index].interactable.handFollowTransform && HasSkeleton())
             {
                 skeleton.transform.localPosition = Vector3.zero;
                 skeleton.transform.localRotation = Quaternion.identity;
             }
+            */
 
             if (attachedObjects[index].attachedObject != null)
             {
@@ -881,7 +888,7 @@ public class NGOHand : MonoBehaviour
         hoveringInteractable = closestInteractable;
     }
 
-    protected virtual bool CheckHoveringForTransform(Vector3 hoverPosition, float hoverRadius, ref float closestDistance, ref Interactable closestInteractable, Color debugColor)
+    protected virtual bool CheckHoveringForTransform(Vector3 hoverPosition, float hoverRadius, ref float closestDistance, ref NGOInteractableObject closestInteractable, Color debugColor)
     {
         bool foundCloser = false;
 
@@ -907,7 +914,7 @@ public class NGOHand : MonoBehaviour
             if (collider == null)
                 continue;
 
-            Interactable contacting = collider.GetComponentInParent<Interactable>();
+            NGOInteractableObject contacting = collider.GetComponentInParent<NGOInteractableObject>();
 
             // Yeah, it's null, skip
             if (contacting == null)
@@ -941,10 +948,12 @@ public class NGOHand : MonoBehaviour
             float distance = Vector3.Distance(contacting.transform.position, hoverPosition);
             //float distance = Vector3.Distance(collider.bounds.center, hoverPosition);
             bool lowerPriority = false;
+            /*
             if (closestInteractable != null)
             { // compare to closest interactable to check priority
                 lowerPriority = contacting.hoverPriority < closestInteractable.hoverPriority;
             }
+            */
             bool isCloser = (distance < closestDistance);
             if (isCloser && !lowerPriority)
             {
@@ -1109,7 +1118,7 @@ public class NGOHand : MonoBehaviour
     /// <summary>
     /// Returns true when the hand is currently hovering over the interactable passed in
     /// </summary>
-    public bool IsStillHovering(Interactable interactable)
+    public bool IsStillHovering(NGOInteractableObject interactable)
     {
         return hoveringInteractable == interactable;
     }
@@ -1122,7 +1131,7 @@ public class NGOHand : MonoBehaviour
             if (currentAttachedObjectInfo.Value.interactable != null)
             {
                 SteamVR_Skeleton_PoseSnapshot pose = null;
-
+                /*
                 if (currentAttachedObjectInfo.Value.interactable.skeletonPoser != null && HasSkeleton())
                 {
                     pose = currentAttachedObjectInfo.Value.interactable.skeletonPoser.GetBlendedPose(skeleton);
@@ -1168,7 +1177,7 @@ public class NGOHand : MonoBehaviour
                         mainRenderModel.SetHandPosition(targetHandPosition);
                     if (hoverhighlightRenderModel != null)
                         hoverhighlightRenderModel.SetHandPosition(targetHandPosition);
-                }
+                }*/
             }
         }
     }
@@ -1182,7 +1191,7 @@ public class NGOHand : MonoBehaviour
             {
                 if (attachedInfo.HasAttachFlag(AttachmentFlags.VelocityMovement))
                 {
-                    if (attachedInfo.interactable.attachEaseIn == false || attachedInfo.interactable.snapAttachEaseInCompleted)
+                    //if (attachedInfo.interactable.attachEaseIn == false || attachedInfo.interactable.snapAttachEaseInCompleted)
                         UpdateAttachedVelocity(attachedInfo);
 
                     /*if (attachedInfo.interactable.handFollowTransformPosition)
@@ -1200,7 +1209,7 @@ public class NGOHand : MonoBehaviour
                     }
                 }
 
-
+                /*
                 if (attachedInfo.interactable.attachEaseIn)
                 {
                     float t = Util.RemapNumberClamped(Time.time, attachedInfo.attachTime, attachedInfo.attachTime + attachedInfo.interactable.snapAttachEaseInTime, 0.0f, 1.0f);
@@ -1221,6 +1230,7 @@ public class NGOHand : MonoBehaviour
                         attachedInfo.interactable.snapAttachEaseInCompleted = true;
                     }
                 }
+                */
             }
         }
     }
@@ -1256,6 +1266,7 @@ public class NGOHand : MonoBehaviour
 
     protected Vector3 TargetItemPosition(AttachedObject attachedObject)
     {
+        /*
         if (attachedObject.interactable != null && attachedObject.interactable.skeletonPoser != null && HasSkeleton())
         {
             Vector3 tp = attachedObject.handAttachmentPointTransform.InverseTransformPoint(transform.TransformPoint(attachedObject.interactable.skeletonPoser.GetBlendedPose(skeleton).position));
@@ -1264,12 +1275,14 @@ public class NGOHand : MonoBehaviour
         }
         else
         {
+        */
             return currentAttachedObjectInfo.Value.handAttachmentPointTransform.TransformPoint(attachedObject.initialPositionalOffset);
-        }
+        //
     }
 
     protected Quaternion TargetItemRotation(AttachedObject attachedObject)
     {
+        /*
         if (attachedObject.interactable != null && attachedObject.interactable.skeletonPoser != null && HasSkeleton())
         {
             Quaternion tr = Quaternion.Inverse(attachedObject.handAttachmentPointTransform.rotation) * (transform.rotation * attachedObject.interactable.skeletonPoser.GetBlendedPose(skeleton).rotation);
@@ -1277,8 +1290,9 @@ public class NGOHand : MonoBehaviour
         }
         else
         {
+        */
             return currentAttachedObjectInfo.Value.handAttachmentPointTransform.rotation * attachedObject.initialRotationalOffset;
-        }
+        //}
     }
 
     protected bool GetUpdatedAttachedVelocities(AttachedObject attachedObjectInfo, out Vector3 velocityTarget, out Vector3 angularTarget)
@@ -1390,7 +1404,7 @@ public class NGOHand : MonoBehaviour
     //
     // interactable - The Interactable to hover over indefinitely.
     //-------------------------------------------------
-    public void HoverLock(Interactable interactable)
+    public void HoverLock(NGOInteractableObject interactable)
     {
         if (spewDebugText)
             HandDebugLog("HoverLock " + interactable);
@@ -1404,7 +1418,7 @@ public class NGOHand : MonoBehaviour
     //
     // interactable - The hover-locked Interactable to stop hovering over indefinitely.
     //-------------------------------------------------
-    public void HoverUnlock(Interactable interactable)
+    public void HoverUnlock(NGOInteractableObject interactable)
     {
         if (spewDebugText)
             HandDebugLog("HoverUnlock " + interactable);

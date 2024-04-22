@@ -86,7 +86,7 @@ public class NGOInteractableObject : NetworkBehaviour
 
         if (startingGrabType != GrabTypes.None) {
             hand.AttachObject(gameObject, startingGrabType, attachmentFlags, null);
-            hand.HideGrabHint();
+            //hand.HideGrabHint();
         }
     }
 

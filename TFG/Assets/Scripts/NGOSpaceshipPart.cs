@@ -33,34 +33,25 @@ public class NGOSpaceshipPart : NetworkBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // checks if the collision is an spaceship part
-        if (collision.gameObject.tag == "SpaceshipPart")
-        {
+        if (collision.gameObject.tag == "SpaceshipPart") {
             // if the merge is possible, then both objects merge into a spaceship parent object
             // it also assures the merge only is activated from the lowest partID
             NGOSpaceshipPart col_sp = collision.gameObject.GetComponent<NGOSpaceshipPart>();
-            if (partID < col_sp.partID)
-            {
+            if (partID < col_sp.partID) {
                 if (MergeIsPossible(collision.gameObject, false))
-                {
-                    //gameObject.GetComponent<PhotonView>().RPC("Merge", RpcTarget.All, collision.gameObject.name);
-                }
-                else
-                {
+                    MergeRpc(collision.gameObject.name);
+                else {
                     fail.Play();
                     marked = false;
                     col_sp.marked = false;
                 }
             }
         }
-        else if (collision.gameObject.tag == "Spaceship")
-        {
+        else if (collision.gameObject.tag == "Spaceship") {
             // if collision is with the spaceship parent and the merge is possible, this gameObject joins to the parent
             if (MergeIsPossible(collision.gameObject, true))
-            {
-                //gameObject.GetComponent<PhotonView>().RPC("JoinToSpaceship", RpcTarget.All, collision.gameObject.name);
-            }
-            else
-            {
+                JoinToSpaceshipRpc(collision.gameObject.name);
+            else {
                 fail.Play();
                 marked = false;
                 collision.transform.Find("Body").GetComponent<NGOSpaceshipPart>().marked = false;
@@ -89,15 +80,15 @@ public class NGOSpaceshipPart : NetworkBehaviour
         //Destroy(o.GetComponent<PhotonRigidbodyView>());
         Destroy(o.GetComponent<Rigidbody>());
 
-        /*
-
+        
         // creation of parent
-        GameObject spaceship = new GameObject("Spaceship", typeof(Rigidbody), typeof(PhotonView), typeof(PhotonRigidbodyView));
+        // GameObject spaceship = new GameObject("Spaceship", typeof(Rigidbody), typeof(PhotonView), typeof(PhotonRigidbodyView));
+        GameObject spaceship = new GameObject("Spaceship", typeof(Rigidbody), typeof(NetworkBehaviour));
         spaceship.tag = "Spaceship";
         spaceship.transform.position = Vector3.Lerp(gameObject.transform.position, o.transform.position, (float) 0.5);
 
         // config parent photon properties
-        ConfigPhotonView(spaceship);
+        //ConfigPhotonView(spaceship);
 
         // assigning self & o to new parent
         gameObject.transform.parent = spaceship.transform;
@@ -105,7 +96,7 @@ public class NGOSpaceshipPart : NetworkBehaviour
         //Destroy(gameObject.GetComponent<PhotonView>());
         marked = false;
 
-        SpaceshipPart sp = o.GetComponent<SpaceshipPart>();
+        NGOSpaceshipPart sp = o.GetComponent<NGOSpaceshipPart>();
         o.transform.parent = spaceship.transform;
         o.transform.localPosition = sp.relative_position;
         //Destroy(o.GetComponent<PhotonView>());
@@ -117,7 +108,6 @@ public class NGOSpaceshipPart : NetworkBehaviour
         spaceship_rb.isKinematic = false;
 
         hit.Play();
-            */
     }
 
 

@@ -59,7 +59,15 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1916000971194804, guid: 473e487cd94fb5c48ae23885fbb5f289,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1673796465192503638}
+    - targetCorrespondingSourceObject: {fileID: 1432801979527840, guid: 473e487cd94fb5c48ae23885fbb5f289,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1890190951875111858}
   m_SourcePrefab: {fileID: 100100000, guid: 473e487cd94fb5c48ae23885fbb5f289, type: 3}
 --- !u!4 &1975103053434548765 stripped
 Transform:
@@ -97,15 +105,135 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1979707498607174603}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1980530895025443179 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1432801979527840, guid: 473e487cd94fb5c48ae23885fbb5f289,
+    type: 3}
+  m_PrefabInstance: {fileID: 1979707498607174603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1890190951875111858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1980530895025443179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b422a624ee10ac9419bae20ae4438e25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  otherHand: {fileID: 1673796465192503638}
+  handType: 0
+  trackedObject: {fileID: 0}
+  grabPinchAction:
+    actionPath: /actions/default/in/GrabPinch
+    needsReinit: 0
+  grabGripAction:
+    actionPath: /actions/default/in/GrabGrip
+    needsReinit: 0
+  hapticAction:
+    actionPath: /actions/default/out/Haptic
+    needsReinit: 0
+  uiInteractAction:
+    actionPath: /actions/default/in/InteractUI
+    needsReinit: 0
+  useHoverSphere: 1
+  hoverSphereTransform: {fileID: 0}
+  hoverSphereRadius: 0.05
+  hoverLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  hoverUpdateInterval: 0.1
+  useControllerHoverComponent: 1
+  controllerHoverComponent: tip
+  controllerHoverRadius: 0.075
+  useFingerJointHover: 1
+  fingerJointHover: 10
+  fingerJointHoverRadius: 0.025
+  objectAttachmentPoint: {fileID: 0}
+  noSteamVRFallbackCamera: {fileID: 6198491479277727157}
+  noSteamVRFallbackMaxDistanceNoItem: 10
+  noSteamVRFallbackMaxDistanceWithItem: 0.5
+  renderModelPrefab: {fileID: 0}
+  renderModels: []
+  mainRenderModel: {fileID: 0}
+  hoverhighlightRenderModel: {fileID: 0}
+  showDebugText: 0
+  spewDebugText: 0
+  showDebugInteractables: 0
 --- !u!1 &1980837542910638467 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1139348311005768, guid: 473e487cd94fb5c48ae23885fbb5f289,
     type: 3}
   m_PrefabInstance: {fileID: 1979707498607174603}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1981473801546719871 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1916000971194804, guid: 473e487cd94fb5c48ae23885fbb5f289,
+    type: 3}
+  m_PrefabInstance: {fileID: 1979707498607174603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1673796465192503638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1981473801546719871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b422a624ee10ac9419bae20ae4438e25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  otherHand: {fileID: 1890190951875111858}
+  handType: 0
+  trackedObject: {fileID: 0}
+  grabPinchAction:
+    actionPath: /actions/default/in/GrabPinch
+    needsReinit: 0
+  grabGripAction:
+    actionPath: /actions/default/in/GrabGrip
+    needsReinit: 0
+  hapticAction:
+    actionPath: /actions/default/out/Haptic
+    needsReinit: 0
+  uiInteractAction:
+    actionPath: /actions/default/in/InteractUI
+    needsReinit: 0
+  useHoverSphere: 1
+  hoverSphereTransform: {fileID: 0}
+  hoverSphereRadius: 0.05
+  hoverLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  hoverUpdateInterval: 0.1
+  useControllerHoverComponent: 1
+  controllerHoverComponent: tip
+  controllerHoverRadius: 0.075
+  useFingerJointHover: 1
+  fingerJointHover: 10
+  fingerJointHoverRadius: 0.025
+  objectAttachmentPoint: {fileID: 0}
+  noSteamVRFallbackCamera: {fileID: 6198491479277727157}
+  noSteamVRFallbackMaxDistanceNoItem: 10
+  noSteamVRFallbackMaxDistanceWithItem: 0.5
+  renderModelPrefab: {fileID: 0}
+  renderModels: []
+  mainRenderModel: {fileID: 0}
+  hoverhighlightRenderModel: {fileID: 0}
+  showDebugText: 0
+  spewDebugText: 0
+  showDebugInteractables: 0
 --- !u!4 &3943327836347323922 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3296871036146693593, guid: 473e487cd94fb5c48ae23885fbb5f289,
+    type: 3}
+  m_PrefabInstance: {fileID: 1979707498607174603}
+  m_PrefabAsset: {fileID: 0}
+--- !u!20 &6198491479277727157 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5583375381803175550, guid: 473e487cd94fb5c48ae23885fbb5f289,
     type: 3}
   m_PrefabInstance: {fileID: 1979707498607174603}
   m_PrefabAsset: {fileID: 0}

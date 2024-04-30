@@ -9,6 +9,8 @@ TagManager:
   - Floor
   - CastlePart
   - Spaceship
+  - WheelSlot
+  - EngineSlot
   layers:
   - Default
   - TransparentFX

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1190107947141762541}
   - component: {fileID: 5260773394384729601}
   - component: {fileID: 4103378762422152616}
+  - component: {fileID: 7699248378796585722}
   - component: {fileID: 913956734830050612}
   - component: {fileID: 8265535739685199503}
   m_Layer: 0
@@ -99,7 +100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1991097683
+  GlobalObjectIdHash: 3348452063
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -120,8 +121,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0705dc095d3dfc34e96bf720d1fde050, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carSlotCollider: {fileID: 0}
-  colorSpawnedObject: 1
+  tagToSnap: WheelSlot
+  positionOffset: {x: -0.25, y: 0, z: 0}
+  localRotation: {x: 0, y: 0, z: 1, w: -0.00000004371139}
+--- !u!64 &7699248378796585722
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7108300312244278626}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300064, guid: b57b299a5c482484592581d337cb755a, type: 3}
 --- !u!54 &913956734830050612
 Rigidbody:
   m_ObjectHideFlags: 0

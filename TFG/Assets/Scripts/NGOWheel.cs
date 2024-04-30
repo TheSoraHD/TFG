@@ -2,26 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
+using TMPro;
+using UnityEditor;
 
 public class NGOWheel : NetworkBehaviour
 {
-    public Collider carSlotCollider;
-    public bool colorSpawnedObject = true;
+    public string tagToSnap;
+    public Vector3 positionOffset;
+    public Quaternion localRotation;
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider == carSlotCollider)
-        {
-            ContactPoint contact = collision.contacts[0];
-            RaycastHit hit;
-
-            float backTrackLength = 1f;
-            Ray ray = new Ray(contact.point - (-contact.normal * backTrackLength), -contact.normal);
-            if (collision.collider.Raycast(ray, out hit, 2))
-            {
-
-            }
-            Debug.DrawRay(ray.origin, ray.direction, Color.cyan, 5, true);
+        if (collision.gameObject.tag == tagToSnap) {
+            Rigidbody rb = GetComponent<Rigidbody>();
+            rb.isKinematic = true;
+            rb.useGravity = false;
+            transform.position = collision.transform.position + positionOffset;
+            transform.rotation = localRotation;
         }
     }
 }

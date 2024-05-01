@@ -5,7 +5,6 @@ using Unity.Netcode;
 using System.IO;
 using UnityEngine.SceneManagement;
 using Unity.Netcode.Transports.UTP;
-//using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class NGONetworkManager : NetworkManager
 {
@@ -22,8 +21,7 @@ public class NGONetworkManager : NetworkManager
         // if an instance already exists and it's not this one - destroy us
         if (instance != null && instance != this)
             gameObject.SetActive(false);
-        else
-        {
+        else {
             // set the instance
             instance = this;
             DontDestroyOnLoad(gameObject);
@@ -68,8 +66,7 @@ public class NGONetworkManager : NetworkManager
 
     public void LoadLevel(int level)
     {
-        if (IsServer)
-        {
+        if (IsServer) {
             //Get Level Name From Build Index
             string path = SceneUtility.GetScenePathByBuildIndex(level);
             int slash = path.LastIndexOf('/');
@@ -80,22 +77,14 @@ public class NGONetworkManager : NetworkManager
         }
     }
 
-    public bool IsMasterClient()
-    {
-        //return PhotonNetwork.IsMasterClient;
-        return false;
-    }
-
     public void Create()
     {
         Singleton.StartHost();
-        //NetworkManager.Singleton.StartHost();
     }
 
     public void Join()
     {
         Singleton.GetComponent<UnityTransport>().SetConnectionData(IP, 7777);
         Singleton.StartClient();
-        //NetworkManager.Singleton.StartClient();
     }
 }

@@ -6,7 +6,7 @@ using TMPro;
 using UnityEditor;
 
 [RequireComponent(typeof(NGOTagSnap))]
-public class NGOWheel : NetworkBehaviour
+public class NGOEngine : NetworkBehaviour
 {
 
     private NGOTagSnap m_snap;
@@ -18,7 +18,7 @@ public class NGOWheel : NetworkBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == m_snap.tagToSnap) //TO-DO: Check Drilling for 3 seconds
+        if (collision.gameObject.tag == m_snap.tagToSnap)
             m_snap.TagSnapRpc(collision.transform.position);
     }
 }

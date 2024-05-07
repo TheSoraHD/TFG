@@ -8,8 +8,8 @@ using UnityEditor;
 [RequireComponent(typeof(NGOTagSnap))]
 public class NGOEngine : NetworkBehaviour
 {
-
     private NGOTagSnap m_snap;
+    public bool snapped = false;
 
     private void Start()
     {
@@ -18,7 +18,9 @@ public class NGOEngine : NetworkBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == m_snap.tagToSnap)
+        if (collision.gameObject.tag == m_snap.tagToSnap) {
             m_snap.TagSnapRpc(collision.transform.position);
+            snapped = true;
+        }
     }
 }

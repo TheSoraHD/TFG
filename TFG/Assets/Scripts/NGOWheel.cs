@@ -8,8 +8,9 @@ using UnityEditor;
 [RequireComponent(typeof(NGOTagSnap))]
 public class NGOWheel : NetworkBehaviour
 {
-
     private NGOTagSnap m_snap;
+    public float drillTimer = 0.0f;
+    public bool snapped = false;
 
     private void Start()
     {
@@ -18,7 +19,9 @@ public class NGOWheel : NetworkBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == m_snap.tagToSnap) //TO-DO: Check Drilling for 3 seconds
+        if (collision.gameObject.tag == m_snap.tagToSnap && drillTimer > 100.0f) {
             m_snap.TagSnapRpc(collision.transform.position);
+            snapped = true;
+        }
     }
 }

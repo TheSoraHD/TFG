@@ -42,7 +42,8 @@ public class NGOTaskController : NetworkBehaviour
         {
             case 0: //INTRO
                 IntroButton button = GameObject.Find("Button").GetComponent<IntroButton>();
-                if (button.pushed && firstTime) LevelCleared(currentLevel);
+                if (button.pushed && firstTime)
+                    LevelCleared(currentLevel);
                 break;
 
             case 1: //SPACESHIP
@@ -50,7 +51,6 @@ public class NGOTaskController : NetworkBehaviour
                 if (spaceship != null && spaceship.transform.childCount == 6) {
                     if (CheckSpaceshipColor(spaceship) && firstTime) {
                         LevelCleared(currentLevel);
-                        //photonView.DestroySpaceship("Spaceship");
                         Destroy(spaceship);
                     }
                 }
@@ -60,29 +60,27 @@ public class NGOTaskController : NetworkBehaviour
                 GameObject platform = GameObject.Find("/Platform3");
                 GameObject[] HanoiPieces = GameObject.FindGameObjectsWithTag("HanoiPiece");
 
-                if (platform != null && HanoiPieces.Length > 0)
-                {
+                if (platform != null && HanoiPieces.Length > 0) {
                     if (CheckHanoiPieces(platform, HanoiPieces) && firstTime)
-                    {
                         LevelCleared(currentLevel);
-                    }
                 }
                 break;
 
             case 3: //CASTLE
                 NGOCastlePart[] castleParts = Resources.FindObjectsOfTypeAll<NGOCastlePart>();
 
-                if (castleParts.Length > 0)
-                {
+                if (castleParts.Length > 0) {
                     if (CheckCastleParts(castleParts) && firstTime)
-                    {
                         LevelCleared(currentLevel);
-                    }
                 }
                 break;
 
             case 4: //CAR
-                //TO-DO
+                NGOWheel[] wheels = GameObject.FindObjectsOfType<NGOWheel>();
+                NGOEngine engine = GameObject.FindObjectOfType<NGOEngine>();
+
+                if (CheckCarTasks(wheels, engine) && firstTime)
+                    LevelCleared(currentLevel);
                 break;
 
             default:
@@ -142,6 +140,11 @@ public class NGOTaskController : NetworkBehaviour
             res &= castlePart.state == 2;
         }
         return res;
+    }
+
+    bool CheckCarTasks(NGOWheel[] wheels, NGOEngine engine)
+    {
+        return (wheels[0].snapped && wheels[1].snapped && engine.snapped);
     }
 
     [Rpc(SendTo.Everyone)]

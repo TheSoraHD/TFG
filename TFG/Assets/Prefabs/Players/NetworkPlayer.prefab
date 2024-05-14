@@ -382,7 +382,7 @@ MonoBehaviour:
   fingerJointHover: 10
   fingerJointHoverRadius: 0.025
   objectAttachmentPoint: {fileID: 0}
-  noSteamVRFallbackCamera: {fileID: 2313461204899947594}
+  noSteamVRFallbackCamera: {fileID: 0}
   noSteamVRFallbackMaxDistanceNoItem: 10
   noSteamVRFallbackMaxDistanceWithItem: 0.5
   renderModelPrefab: {fileID: 0}
@@ -532,7 +532,7 @@ MonoBehaviour:
   fingerJointHover: 10
   fingerJointHoverRadius: 0.025
   objectAttachmentPoint: {fileID: 0}
-  noSteamVRFallbackCamera: {fileID: 2313461204899947594}
+  noSteamVRFallbackCamera: {fileID: 0}
   noSteamVRFallbackMaxDistanceNoItem: 10
   noSteamVRFallbackMaxDistanceWithItem: 0.5
   renderModelPrefab: {fileID: 0}
@@ -734,7 +734,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3843087647
+  GlobalObjectIdHash: 1794816757
   InScenePlacedSourceGlobalObjectIdHash: 3843087647
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1

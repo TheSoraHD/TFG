@@ -575,6 +575,7 @@ MonoBehaviour:
   footYPosOffset: 0.1
   rayStartYOffset: 0
   rayLength: 3.8
+  forwardAngleVariation: 40
 --- !u!1 &5567329577993829279
 GameObject:
   m_ObjectHideFlags: 0
@@ -901,6 +902,7 @@ MonoBehaviour:
   footYPosOffset: 0.1
   rayStartYOffset: 0
   rayLength: 3.8
+  forwardAngleVariation: 40
 --- !u!1 &8824112271670420304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,7 +1153,7 @@ MonoBehaviour:
   fingerJointHover: 10
   fingerJointHoverRadius: 0.025
   objectAttachmentPoint: {fileID: 0}
-  noSteamVRFallbackCamera: {fileID: 2015411670992666559}
+  noSteamVRFallbackCamera: {fileID: 0}
   noSteamVRFallbackMaxDistanceNoItem: 10
   noSteamVRFallbackMaxDistanceWithItem: 0.5
   renderModelPrefab: {fileID: 0}
@@ -1208,7 +1210,7 @@ MonoBehaviour:
   fingerJointHover: 10
   fingerJointHoverRadius: 0.025
   objectAttachmentPoint: {fileID: 0}
-  noSteamVRFallbackCamera: {fileID: 2015411670992666559}
+  noSteamVRFallbackCamera: {fileID: 0}
   noSteamVRFallbackMaxDistanceNoItem: 10
   noSteamVRFallbackMaxDistanceWithItem: 0.5
   renderModelPrefab: {fileID: 0}
@@ -1218,12 +1220,6 @@ MonoBehaviour:
   showDebugText: 0
   spewDebugText: 0
   showDebugInteractables: 0
---- !u!20 &2015411670992666559 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 20000014031267948, guid: 4d293c8e162f3874b982baadd71153d2,
-    type: 3}
-  m_PrefabInstance: {fileID: 1999356156076070867}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6103788882657811605
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -299,12 +299,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8309122451148920371}
   m_SourcePrefab: {fileID: 100100000, guid: 473e487cd94fb5c48ae23885fbb5f289, type: 3}
---- !u!20 &3184656368485378099 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 5583375381803175550, guid: 473e487cd94fb5c48ae23885fbb5f289,
-    type: 3}
-  m_PrefabInstance: {fileID: 7011557389430924877}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7010064872235640825 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1916000971194804, guid: 473e487cd94fb5c48ae23885fbb5f289,
@@ -352,7 +346,7 @@ MonoBehaviour:
   fingerJointHover: 10
   fingerJointHoverRadius: 0.025
   objectAttachmentPoint: {fileID: 0}
-  noSteamVRFallbackCamera: {fileID: 3184656368485378099}
+  noSteamVRFallbackCamera: {fileID: 0}
   noSteamVRFallbackMaxDistanceNoItem: 10
   noSteamVRFallbackMaxDistanceWithItem: 0.5
   renderModelPrefab: {fileID: 0}
@@ -415,7 +409,7 @@ MonoBehaviour:
   fingerJointHover: 10
   fingerJointHoverRadius: 0.025
   objectAttachmentPoint: {fileID: 0}
-  noSteamVRFallbackCamera: {fileID: 3184656368485378099}
+  noSteamVRFallbackCamera: {fileID: 0}
   noSteamVRFallbackMaxDistanceNoItem: 10
   noSteamVRFallbackMaxDistanceWithItem: 0.5
   renderModelPrefab: {fileID: 0}

@@ -34,6 +34,8 @@ public class NGOInteractableObject : NetworkBehaviour
     public event OnAttachedToHandDelegate onAttachedToHand;
     public event OnDetachedFromHandDelegate onDetachedFromHand;
 
+    public UnityEvent onPickUp, onPickDown;
+
 
 
     [System.NonSerialized]
@@ -99,6 +101,8 @@ public class NGOInteractableObject : NetworkBehaviour
         if (onAttachedToHand != null)
             onAttachedToHand.Invoke(hand);
 
+        onPickUp.Invoke();
+
         attached = true;
         attachedToHand = hand;
 
@@ -117,6 +121,8 @@ public class NGOInteractableObject : NetworkBehaviour
     {
         if (onDetachedFromHand != null)
             onDetachedFromHand.Invoke(hand);
+
+        onPickDown.Invoke();
 
         attached = false;
         attachedToHand = null;

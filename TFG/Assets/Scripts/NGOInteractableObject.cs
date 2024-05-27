@@ -24,8 +24,7 @@ public class NGOInteractableObject : NetworkBehaviour
 
     protected new Rigidbody rigidbody;
 
-    [System.NonSerialized]
-    public NGOHand attachedToHand;
+    public int minimumHandsToPickUp = 1;
 
 
     public delegate void OnAttachedToHandDelegate(NGOHand hand);
@@ -36,7 +35,17 @@ public class NGOInteractableObject : NetworkBehaviour
 
     public UnityEvent onPickUp, onPickDown;
 
-
+    [System.NonSerialized]
+    public List<NGOHand> attachedToHands = new List<NGOHand>();
+    public NGOHand attachedToHand
+    {
+        get
+        {
+            if (attachedToHands.Count > 0)
+                return attachedToHands[0];
+            return null;
+        }
+    }
 
     [System.NonSerialized]
     public List<NGOHand> hoveringHands = new List<NGOHand>();
@@ -94,42 +103,77 @@ public class NGOInteractableObject : NetworkBehaviour
 
     protected virtual void OnAttachedToHand(NGOHand hand)
     {
-        //Debug.Log("<b>[SteamVR Interaction]</b> Pickup: " + hand.GetGrabStarting().ToString());
+        //TO-DO: TEST
+        if (minimumHandsToPickUp == 1) {
+            hadInterpolation = this.rigidbody.interpolation;
 
-        hadInterpolation = this.rigidbody.interpolation;
+            if (onAttachedToHand != null)
+                onAttachedToHand.Invoke(hand);
 
-        if (onAttachedToHand != null)
-            onAttachedToHand.Invoke(hand);
+            onPickUp.Invoke();
 
-        onPickUp.Invoke();
+            attached = true;
+            attachedToHands.Add(hand);
 
-        attached = true;
-        attachedToHand = hand;
 
-        hand.HoverLock(null);
+            hand.HoverLock(null);
 
-        rigidbody.interpolation = RigidbodyInterpolation.None;
+            rigidbody.interpolation = RigidbodyInterpolation.None;
 
-        attachPosition = transform.position;
-        attachRotation = transform.rotation;
+            attachPosition = transform.position;
+            attachRotation = transform.rotation;
+        }
+        else {
+            attachedToHands.Add(hand);
+            hand.HoverLock(null);
+            if (minimumHandsToPickUp <= attachedToHands.Count) {
+                hadInterpolation = this.rigidbody.interpolation;
 
+                if (onAttachedToHand != null)
+                    onAttachedToHand.Invoke(hand);
+
+                onPickUp.Invoke();
+
+                attached = true;
+                attachedToHands.Add(hand);
+
+                rigidbody.interpolation = RigidbodyInterpolation.None;
+
+                attachPosition = transform.position;
+                attachRotation = transform.rotation;
+            }
+        }
     }
 
 
     //-------------------------------------------------
     protected virtual void OnDetachedFromHand(NGOHand hand)
     {
-        if (onDetachedFromHand != null)
-            onDetachedFromHand.Invoke(hand);
+        //TO-DO: TEST
+        if (minimumHandsToPickUp == 1) {
+            if (onDetachedFromHand != null)
+                onDetachedFromHand.Invoke(hand);
 
-        onPickDown.Invoke();
+            onPickDown.Invoke();
 
-        attached = false;
-        attachedToHand = null;
+            attached = false;
+            attachedToHands.Remove(hand);
 
-        hand.HoverUnlock(null);
+            hand.HoverUnlock(null);
 
-        rigidbody.interpolation = hadInterpolation;
+            rigidbody.interpolation = hadInterpolation;
+        }
+        else {
+            if (minimumHandsToPickUp > attachedToHands.Count) {
+                while (attachedToHand) {
+                    attachedToHands.Remove(attachedToHand);
+                    attachedToHand.HoverUnlock(null);
+                }
+                onPickDown.Invoke();
+                attached = false;
+                rigidbody.interpolation = hadInterpolation;
+            }
+        }
     }
 
     protected virtual void HandAttachedUpdate(NGOHand hand)

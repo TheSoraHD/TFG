@@ -843,6 +843,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attachmentFlags: 24
   restoreOriginalParent: 0
+  minimumHandsToPickUp: 2
   onPickUp:
     m_PersistentCalls:
       m_Calls: []
